@@ -1,0 +1,28 @@
+header{
+   position: relative;
+   background-color: white;
+   padding: 0;
+   border-bottom: 1px solid black;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+}
+
+.container{
+    margin:0 auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+ul {
+    display: flex;
+    margin: 0;
+    list-style-type: none;
+}
+
+ul a{
+    padding: 1rem;
+    display: inline-block;
+}

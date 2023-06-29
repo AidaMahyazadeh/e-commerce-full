@@ -1,0 +1,69 @@
+<div class="outer">
+    <div class="container">
+      <div class="row">
+          <div class=" panel border bg-white">
+              <div class="panel-heading text-center mb-10">
+                  <h3 class="pt-4 font-weight-bold">Sign Up</h3>
+              </div>
+              <div class="panel-body p-4">
+                  <form [formGroup]="signUpForm" >
+                      <div class="form-group pt-4">
+                        <div class="input-field"
+                        [class.error]="signUpForm.controls['firstname'].dirty && signUpForm.hasError('required','firstname')"
+                        >
+                          <span class="fa fa-user p-2"></span>
+                          <input formControlName="firstname" type="text" placeholder="firstname">
+                        </div>
+                      </div>
+                      <small class="text-danger" *ngIf="signUpForm.controls['firstname'].dirty && signUpForm.hasError('required','firstname')">*Firstname is required.</small>
+                      <div class="form-group pt-4">
+                        <div class="input-field"
+                        [class.error] = "signUpForm.controls['lastname'].dirty && signUpForm.hasError('required','lastname')"
+                        >
+                          <span class="fa fa-user p-2"></span>
+                          <input  formControlName="lastname" type="text" placeholder="lastname">
+                        </div>
+                      </div>
+                      <small class="text-danger" *ngIf="signUpForm.controls['lastname'].dirty && signUpForm.hasError('required','lastname')">Lastname is required.</small>
+                      <div class="form-group pt-4">
+                        <div class="input-field"
+                        [class.error] = "signUpForm.controls['email'].dirty && signUpForm.hasError('required','email') || signUpForm.hasError('email','email')"
+                        >
+                          <span class="fa fa-envelope p-2"></span>
+                          <input formControlName="email" type="text" placeholder="email">
+                        </div>
+                      </div>
+                      <small class="text-danger" *ngIf="signUpForm.controls['email'].dirty && signUpForm.hasError('required','email')">Email is required.</small>
+                      <small class="text-danger" *ngIf="signUpForm.hasError('email','email')">Email should have a correct format.</small>
+                      <div class="form-group pt-4">
+                        <div class="input-field"
+                        [class.error]="signUpForm.controls['username'].dirty && signUpForm.hasError('required','username')"
+                        >
+                          <span class="fa fa-user p-2"></span>
+                          <input formControlName="username" type="text" placeholder="username">
+                        </div>
+                      </div>
+                      <small class="text-danger" *ngIf="signUpForm.controls['username'].dirty && signUpForm.hasError('required','username')">Username is required.</small>
+                      <div class="form-group pt-4">
+                        <div class="input-field"
+                        [class.error]="signUpForm.controls['password'].dirty && signUpForm.hasError('required','password') || signUpForm.hasError('pattern','password')"
+                        > 
+                          <span class="fa fa-lock p-2"></span>
+                          <input formControlName="password" [type]="type" placeholder="password">
+                          <span class="fa {{eyeIcon}}" (click)="hideOrShowPassword()" ></span>
+                       </div> 
+                      </div>
+                      <small class="text-danger" *ngIf="signUpForm.controls['password'].dirty && signUpForm.hasError('required','password')">Password is required.</small>
+                      <small class="text-danger" *ngIf="signUpForm.hasError('pattern','password')">Password should have Minimum eight and maximum 10 characters, at least one uppercase letter, one lowercase letter, one number and one special character.</small>
+                   <button (click)="onSignUp()" type="submit" class="btn btn-primary mt-4 w-100">Sign Up</button>
+                      <div class="text-center pt-4 text-muted">Already have account?<a routerLink="/login">Login </a> </div>
+                  </form>
+  
+              </div>
+          </div>
+       </div>
+      </div>
+    </div>
+
+  
+
