@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import ValidateForm from 'src/app/helpers/validateForm';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-signup',
@@ -14,7 +16,8 @@ export class SignupComponent implements OnInit{
   eyeIcon = 'fa-eye-slash'; 
   //Minimum eight and maximum 10 characters, at least one uppercase letter, one lowercase letter, one number and one special character.
   passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,10}$/;
-constructor(){}
+
+constructor(private auth :AuthService,private router :Router){}
 
 ngOnInit(): void {
   this.signUpForm = new FormGroup({
@@ -30,11 +33,20 @@ hideOrShowPassword () {
   this.isText = !this.isText;
   this.isText ? this.type = 'text' : this.type = 'password';
   this.isText ? this.eyeIcon = 'fa-eye' : this.eyeIcon = 'fa-eye-slash';
-  console.log(this.signUpForm)
   }
 
   onSignUp (){
     if (this.signUpForm.valid){
+       this.auth.signUp (this.signUpForm.value).subscribe ({
+        next : (res=>{
+          this.signUpForm.reset ();
+          this.router.navigate (['login'])
+          // alert ('You have signed up successfully.') 
+        }),
+        error : (err => {
+          
+        })
+      })
     
     }else{
       ValidateForm.validateAllFields (this.signUpForm)

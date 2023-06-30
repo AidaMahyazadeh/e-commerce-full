@@ -12,13 +12,17 @@ const signupController = async (req,res) =>{
     const emailRecord = await User.findOne ({email});
     const userNameRecord = await User.findOne ({username}); 
     if (emailRecord) {
-        return res.status (400).send ({
+        return res.status (400).json({
             message :'Email is already registered.'
         }) 
     }else if (userNameRecord){
-        return res.status (400).send ({
+        return res.status (400).json ({
             message :'This username already exists.'
         }) 
+    }else if(req.body == null){
+        return res.status(400).json({
+             messege : 'you should fill all the fields.' 
+        })
     }else{
         const user = new User({
             firstname,
@@ -28,21 +32,18 @@ const signupController = async (req,res) =>{
             password : hashedPassword
           })
           const result = await user.save();
-          res.json ({
-            user :result
-          })
-         
           const {_id} = await result.toJSON();
           const secret = process.env.JWT_KEY;
           const token = jwt.sign({_id},secret);
           res.cookie('jwt',token,{
             httpOnly :true,
             maxAge : 24* 60 * 60 * 1000 //1day
-          });
-
-          res.send ({
-            message :'SUCCESS'
           })
+          res.json ({
+            user :result,
+            message : 'SUCCESS'
+          })
+         
     }
 }
      module.exports = signupController;

@@ -54,7 +54,7 @@
                        </div> 
                       </div>
                       <small class="text-danger" *ngIf="signUpForm.controls['password'].dirty && signUpForm.hasError('required','password')">Password is required.</small>
-                      <small class="text-danger" *ngIf="signUpForm.hasError('pattern','password')">Password should have Minimum eight and maximum 10 characters, at least one uppercase letter, one lowercase letter, one number and one special character.</small>
+                      <small class="text-danger" *ngIf="signUpForm.controls['password'].dirty &&signUpForm.hasError('pattern','password')">Password should have Minimum eight and maximum 10 characters, at least one uppercase letter, one lowercase letter, one number and one special character.</small>
                    <button (click)="onSignUp()" type="submit" class="btn btn-primary mt-4 w-100">Sign Up</button>
                       <div class="text-center pt-4 text-muted">Already have account?<a routerLink="/login">Login </a> </div>
                   </form>
