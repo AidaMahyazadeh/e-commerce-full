@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { NgToastService } from 'ng-angular-popup';
 import ValidateForm from 'src/app/helpers/validateForm';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -14,7 +16,11 @@ type = 'password';
 isText =false;
 eyeIcon ='fa-eye-slash';
 
-constructor (private auth :AuthService ) {}
+constructor (
+  private auth :AuthService,
+  private router :Router,
+  private toast :NgToastService
+   ) {}
 
 ngOnInit(): void {
   this.loginForm = new FormGroup ({
@@ -33,11 +39,25 @@ onLogin () {
   if (this.loginForm.valid){
   this.auth.login(this.loginForm.value).subscribe({
     next : (res => {
-      alert('you are logged in')
       this.loginForm.reset ();
+     
+      for(let [key,value] of Object.entries(res)){
+        if (key == 'token'){
+          this.auth.storeToken(value)
+        }
+        this.router.navigate(['cart'])
+      }
+      this.toast.success({
+        detail : 'SUCCESS',
+        summary : 'You are logged in.',
+        duration :3000
+      })
     }),
     error :(err =>{
-      alert (err?.error.message)
+      this.toast.error ({
+        detail : 'ERROR',
+        summary : err?.error.message
+      })
     })
   })
   }else{

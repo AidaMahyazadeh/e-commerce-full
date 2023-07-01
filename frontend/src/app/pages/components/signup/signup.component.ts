@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NgToastService } from 'ng-angular-popup';
 import ValidateForm from 'src/app/helpers/validateForm';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -17,7 +18,11 @@ export class SignupComponent implements OnInit{
   //Minimum eight and maximum 10 characters, at least one uppercase letter, one lowercase letter, one number and one special character.
   passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,10}$/;
 
-constructor(private auth :AuthService,private router :Router){}
+constructor(
+  private auth : AuthService,
+  private router : Router,
+  private toast : NgToastService
+  ){}
 
 ngOnInit(): void {
   this.signUpForm = new FormGroup({
@@ -39,12 +44,19 @@ hideOrShowPassword () {
     if (this.signUpForm.valid){
        this.auth.signUp (this.signUpForm.value).subscribe ({
         next : (res=>{
+          this.toast.success({
+            detail : 'SUCCESS',
+            summary : `welcome ${this.signUpForm.controls['firstname'].value}`,
+            duration :3000
+          })
           this.signUpForm.reset ();
           this.router.navigate (['login'])
-          // alert ('You have signed up successfully.') 
         }),
         error : (err => {
-          
+          this.toast.error ({
+            detail : 'ERROR',
+            summary : err?.error.message
+          })
         })
       })
     

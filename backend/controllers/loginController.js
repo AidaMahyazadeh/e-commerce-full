@@ -16,7 +16,18 @@ const loginController = async (req,res) =>{
             message : 'password is not correct.'
         })
     }
-   res.send (user);
+          const {_id} = await user.toJSON();
+          const secret = process.env.JWT_KEY;
+          const token = jwt.sign({_id},secret);
+          res.cookie('jwt',token,{
+            httpOnly :true,
+            maxAge : 24* 60 * 60 * 1000 //1day
+          })
+        
+   res.json ({
+    token,
+    user
+   })
 }
 
 module.exports = loginController;

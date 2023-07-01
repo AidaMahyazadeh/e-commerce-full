@@ -2,16 +2,19 @@ const express = require ('express');
 const router = express.Router();
 const signupController = require ('../controllers/signUpController');
 const loginController = require ('../controllers/loginController');
+const logoutController = require('../controllers/logoutController');
+const userController = require('../controllers/userController');
 
 
 
-router.post ('/signup', signupController)
 
-router.post ('/login', loginController)
+router.post ('/signup', signupController);
 
-router.get ('/user',(req,res) =>{
-    const cookie = req.cookies ['jwt'];
-    res.send (cookie)
-})
+router.post ('/login', loginController);
+
+router.post ('/logout',logoutController);
+
+router.post ('/user', userController);
+
 
 module.exports = router;

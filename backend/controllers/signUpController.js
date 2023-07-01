@@ -39,9 +39,11 @@ const signupController = async (req,res) =>{
             httpOnly :true,
             maxAge : 24* 60 * 60 * 1000 //1day
           })
+
           res.json ({
             user :result,
-            message : 'SUCCESS'
+            message : 'SUCCESS',
+            token 
           })
          
     }

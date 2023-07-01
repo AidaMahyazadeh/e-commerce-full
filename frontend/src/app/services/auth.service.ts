@@ -2,12 +2,13 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import ISignUpForm from '../models/signUpForm.model';
 import ILoginForm from '../models/loginForm.model';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-// baseUrl = 'mongodb+srv://aidamahyazadeh83:PUMSwoVyMHSbT6nm@mydatabase.5ppsqdv.mongodb.net/';
+
 baseUrl = 'http://localhost:8000/';
 
   constructor(private http :HttpClient) { }
@@ -19,4 +20,23 @@ baseUrl = 'http://localhost:8000/';
   login (loginForm : ILoginForm) {
    return this.http.post (`${this.baseUrl}login`,loginForm)
   }
+
+  getAllUsers () {
+    return this.http.get (`${this.baseUrl}user`)
+  }
+
+  storeToken (tokenValue : string){
+    localStorage.setItem ('token',tokenValue)
+  }
+
+  getToken (){
+    return localStorage.getItem ('token')
+  }
+
+  isLoggedin ()  {
+     return (!!localStorage.getItem ('token'))
+  }
+   logout () {
+    return localStorage.clear ()
+   }
 }
