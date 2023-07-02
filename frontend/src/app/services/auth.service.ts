@@ -2,7 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import ISignUpForm from '../models/signUpForm.model';
 import ILoginForm from '../models/loginForm.model';
-import { Observable, of } from 'rxjs';
+import { Observable} from 'rxjs';
+import IUser from '../models/user.model';
 
 
 @Injectable({
@@ -11,6 +12,10 @@ import { Observable, of } from 'rxjs';
 export class AuthService {
 
 baseUrl = 'http://localhost:8000/';
+user !:IUser ;
+token !:string;
+
+
 
   constructor(private http :HttpClient) { }
 
@@ -18,12 +23,15 @@ baseUrl = 'http://localhost:8000/';
    return this.http.post (`${this.baseUrl}signup`,signUpForm)
   }
 
-  login (loginForm : ILoginForm)  {
+  login (loginForm : ILoginForm) :Observable<any> {
    return this.http.post (`${this.baseUrl}login`,loginForm)
   }
 
-  getAllUsers () {
-    return this.http.get (`${this.baseUrl}users`)
+  isLoggedin ()  {
+    return (!!localStorage.getItem ('token'))
+ }
+  logout () {
+   return localStorage.clear ()
   }
 
   storeToken (tokenValue : string){
@@ -31,13 +39,24 @@ baseUrl = 'http://localhost:8000/';
   }
 
   getToken (){
-    return localStorage.getItem ('token')
+    return this.token  =localStorage.getItem ('token')!
   }
 
-  isLoggedin ()  {
-     return (!!localStorage.getItem ('token'))
+  storeRole (role :string) {
+    localStorage.setItem ('role' ,role)
   }
-   logout () {
-    return localStorage.clear ()
-   }
+
+  getRole () {
+    return  localStorage.getItem('role')
+  }
+
+  isAdmin () {
+   let role= this.getRole()
+   return role ==='admin'
+  }
+
+  getAllUsers () {
+    return this.http.get (`${this.baseUrl}users`)
+  }
+ 
 }

@@ -38,42 +38,48 @@ this.isText ? this.type = 'text' : this.type = 'password';
 this.isText ? this.eyeIcon = 'fa-eye' : this.eyeIcon = 'fa-eye-slash';
 }
 
-
 onLogin () {
-  if (this.loginForm.valid){
-    // if (this.loginForm.value )
-    // this.auth.login(this.loginForm.value).subscribe(
-    //   res => {
-    //     this.auth.storeToken(res.token)
-    //     console.log(res)
-    //   }
-    // )
-   
-  this.auth.login(this.loginForm.value).subscribe({
-    next : (res => {
+  if (this.loginForm.valid){  
+  this.auth.login(this.loginForm.value).subscribe( res =>{
+    console.log (res) 
+    this.auth.storeToken (res.token)
+    this.auth.storeRole(res.user.role)
+    if (res.user.role === 'admin'){
+      this.router.navigate (['admin'])
+    }else{
+    this.router.navigate (['cart'])
+    }
+    this.toast.success({
+            detail : 'SUCCESS',
+            summary : 'You are logged in.',
+            duration :3000
+          })
     
-      this.loginForm.reset ();
-      for(let [key,value] of Object.entries(res)){
-        this.auth.storeToken(value)
-        if (key == 'token'){
-          this.auth.storeToken(value)
-          this.router.navigate(['cart'])
-        }
-      
-      }
-      this.toast.success({
-        detail : 'SUCCESS',
-        summary : 'You are logged in.',
-        duration :3000
-      })
-    }),
-    error :(err =>{
-      this.toast.error ({
-        detail : 'ERROR',
-        summary : err?.error.message
-      })
-    })
-  })
+
+    
+  //   next : (res => {
+  //   console.log (res)
+  //     this.loginForm.reset ();
+  //     for(let [key,value] of Object.entries(res)){
+  //       if (key == 'token'){
+  //         this.auth.storeToken(value)
+    
+  //       }
+  //     }
+  //     this.toast.success({
+  //       detail : 'SUCCESS',
+  //       summary : 'You are logged in.',
+  //       duration :3000
+  //     })
+  //   }),
+  //   error :(err =>{
+  //     this.toast.error ({
+  //       detail : 'ERROR',
+  //       summary : err?.error.message
+  //     })
+  //   })
+    }
+    )
     
   }else{
     ValidateForm.validateAllFields (this.loginForm)

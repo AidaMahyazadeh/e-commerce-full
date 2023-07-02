@@ -7,8 +7,7 @@ import { SignupComponent } from './pages/components/signup/signup.component';
 import { CartComponent } from './pages/components/cart/cart.component';
 import { AuthGuard } from './services/auth.guard';
 import { AdminComponent } from './pages/components/admin/admin.component';
-
-
+import { AdminAuthGuard } from './services/admin-auth.guard';
 
 
 const routes: Routes = [
@@ -17,7 +16,8 @@ const routes: Routes = [
   {path : 'signup', component : SignupComponent},
   {path :'cart' , component : CartComponent,
     canActivate : [AuthGuard]},
-  {path : 'admin' , component : AdminComponent, data :{}}  
+  {path : 'admin' , component : AdminComponent,
+   canActivate : [AdminAuthGuard] }  
   
 ];
 
