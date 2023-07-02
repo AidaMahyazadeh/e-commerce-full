@@ -18,7 +18,7 @@ baseUrl = 'http://localhost:8000/';
    return this.http.post (`${this.baseUrl}signup`,signUpForm)
   }
 
-  login (loginForm : ILoginForm) :Observable <any> {
+  login (loginForm : ILoginForm)  {
    return this.http.post (`${this.baseUrl}login`,loginForm)
   }
 
