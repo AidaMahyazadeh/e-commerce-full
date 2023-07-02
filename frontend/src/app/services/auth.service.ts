@@ -4,6 +4,7 @@ import ISignUpForm from '../models/signUpForm.model';
 import ILoginForm from '../models/loginForm.model';
 import { Observable, of } from 'rxjs';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -17,12 +18,12 @@ baseUrl = 'http://localhost:8000/';
    return this.http.post (`${this.baseUrl}signup`,signUpForm)
   }
 
-  login (loginForm : ILoginForm) {
+  login (loginForm : ILoginForm) :Observable <any> {
    return this.http.post (`${this.baseUrl}login`,loginForm)
   }
 
   getAllUsers () {
-    return this.http.get (`${this.baseUrl}user`)
+    return this.http.get (`${this.baseUrl}users`)
   }
 
   storeToken (tokenValue : string){

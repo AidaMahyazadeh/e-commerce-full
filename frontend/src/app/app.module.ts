@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { NgToastModule } from 'ng-angular-popup'
 import { AppRoutingModule } from './app-routing.module';
 
@@ -16,6 +16,7 @@ import { AdminComponent } from './pages/components/admin/admin.component';
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,6 +26,7 @@ import { AdminComponent } from './pages/components/admin/admin.component';
     LoginComponent,
     CartComponent,
     AdminComponent,
+   
   
     
   ],

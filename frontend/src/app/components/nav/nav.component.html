@@ -5,19 +5,18 @@
         </a>
         <ul>
             <li>
-                <a routerLink="/login">Login</a>
+                <a *ngIf="!isLoggedin()" routerLink="/login">Login</a>
             </li>
             <li>
-                <a routerLink="/signup">Sign Up</a>
+                <a *ngIf="isLoggedin()" routerLink="/logout" (click)="logout ()">Logout</a>
             </li>
             <li>
-                <a routerLink="/ 
-                signup">admin 
+                <a routerLink="/admin">admin 
             <i class="fa fa-lock"></i>
             </a>
             </li>
             <li>
-                <a routerLink="/cart-page">cart 
+                <a routerLink="/cart">cart 
                     <span class="fa fa-shopping-cart">3</span>
                 </a>
             </li>
