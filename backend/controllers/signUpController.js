@@ -29,7 +29,8 @@ const signupController = async (req,res) =>{
             lastname,
             email, 
             username,
-            password : hashedPassword
+            password : hashedPassword,
+           
           })
           const result = await user.save();
           const {_id} = await result.toJSON();
@@ -37,7 +38,7 @@ const signupController = async (req,res) =>{
           const token = jwt.sign({_id},secret);
           res.cookie('jwt',token,{
             httpOnly :true,
-            maxAge : 24* 60 * 60 * 1000 //1day
+            maxAge : 30 * 24* 60 * 60 * 1000 
           })
 
           res.json ({

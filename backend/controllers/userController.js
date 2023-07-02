@@ -2,27 +2,19 @@ const jwt = require ('jsonwebtoken');
 const dotenv = require ('dotenv').config();
 const User = require ('../models/user');
 
-const userController = async (req,res) => {
+const userController = async  (req,res) => {
     try{
-   const cookie = req.cookies ['jwt'];
-   const secret = process.env.JWT_KEY;
-   const claim = jwt.verify (cookie , secret);
-   
-   if (!claim){
-    return res.status (401).json ({
-        message :'unauthenticated'
-    })
-   }
 
-   const user = await User.findOne ({_id : claim._id})
-   const {password , ...data} = user.toJSON(); 
-   res.json ({
+   const allUsers = await User.find ()
+   const {password,role ,...data} = allUsers
+   
+    return res.status(200).json ({
     message : 'SUCCESS',
     data
    })
 }catch (err){
     return res.status (401).json ({
-        message : 'unauthenticated.',
+        message : 'unauthenticated.' 
     })
  }
 }

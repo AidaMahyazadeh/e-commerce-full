@@ -16,9 +16,9 @@ const loginController = async (req,res) =>{
             message : 'password is not correct.'
         })
     }
-          const {_id} = await user.toJSON();
+          const {_id,role} = await user.toJSON();
           const secret = process.env.JWT_KEY;
-          const token = jwt.sign({_id},secret);
+          const token = jwt.sign({_id,role},secret);
           res.cookie('jwt',token,{
             httpOnly :true,
             maxAge : 24* 60 * 60 * 1000 //1day
