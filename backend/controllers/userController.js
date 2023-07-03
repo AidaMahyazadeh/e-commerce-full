@@ -1,15 +1,15 @@
 const jwt = require ('jsonwebtoken');
 const dotenv = require ('dotenv').config();
 const User = require ('../models/user');
+const mongoose =require ('mongoose')
 
 const userController = async  (req,res) => {
     try{
 
    const allUsers = await User.find ()
-   const {password,role ,...data} = allUsers
+   const [password,role ,...data] = allUsers
    
     return res.status(200).json ({
-    message : 'SUCCESS',
     data
    })
 }catch (err){
