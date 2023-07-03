@@ -55,7 +55,7 @@ token !:string;
    return role ==='admin'
   }
 
-  getAllUsers () {
+  getAllUsers ()  {
     return this.http.get (`${this.baseUrl}users`)
   }
  

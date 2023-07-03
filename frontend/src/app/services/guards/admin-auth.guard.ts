@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { AuthService } from "./auth.service";
+import { AuthService } from "../auth.service";
 import { Router } from "@angular/router";
 import { NgToastService } from "ng-angular-popup";
 
@@ -7,7 +7,7 @@ import { NgToastService } from "ng-angular-popup";
   providedIn : 'root'
 })
 
-export class AuthGuard {
+export class AdminAuthGuard {
   constructor (
     private auth :AuthService,
     private router : Router,
@@ -15,12 +15,13 @@ export class AuthGuard {
     ){}
 
     canActivate (): boolean{
-      if (! this.auth.isLoggedin()){
-        this.router.navigate (['login'])
-        this.toast.warning ({detail : 'warning' ,summary :'you should login first.'})
+      if (!this.auth.isAdmin()){
+        this.router.navigate ([''])
+        this.toast.warning ({detail : 'warning' ,summary :'you can not access to this page.',
+        duration : 3000
+      })
       }
-        this.auth.isLoggedin()
+        this.auth.isAdmin()
         return true
       }
     }
-

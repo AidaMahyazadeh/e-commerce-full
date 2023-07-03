@@ -41,49 +41,23 @@ this.isText ? this.eyeIcon = 'fa-eye' : this.eyeIcon = 'fa-eye-slash';
 onLogin () {
   if (this.loginForm.valid){  
   this.auth.login(this.loginForm.value).subscribe( res =>{
-    console.log (res) 
     this.auth.storeToken (res.token)
     this.auth.storeRole(res.user.role)
     if (res.user.role === 'admin'){
       this.router.navigate (['admin'])
-    }else{
+    }else if (res.user.role === 'user'){
     this.router.navigate (['cart'])
-    }
     this.toast.success({
-            detail : 'SUCCESS',
-            summary : 'You are logged in.',
-            duration :3000
-          })
-    
-
-    
-  //   next : (res => {
-  //   console.log (res)
-  //     this.loginForm.reset ();
-  //     for(let [key,value] of Object.entries(res)){
-  //       if (key == 'token'){
-  //         this.auth.storeToken(value)
-    
-  //       }
-  //     }
-  //     this.toast.success({
-  //       detail : 'SUCCESS',
-  //       summary : 'You are logged in.',
-  //       duration :3000
-  //     })
-  //   }),
-  //   error :(err =>{
-  //     this.toast.error ({
-  //       detail : 'ERROR',
-  //       summary : err?.error.message
-  //     })
-  //   })
+      detail : 'SUCCESS',
+      summary : 'You are logged in.',
+      duration :3000
+    })
     }
-    )
-    
+  }
+    ) 
   }else{
     ValidateForm.validateAllFields (this.loginForm)
   }
-}
+ }
 
 }

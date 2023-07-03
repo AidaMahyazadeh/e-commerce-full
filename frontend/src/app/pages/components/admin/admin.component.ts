@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import IUser from 'src/app/models/user.model';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -7,11 +8,19 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./admin.component.css']
 })
 export class AdminComponent implements OnInit{
-  users : any = []
+  users !: IUser [];
+  
  constructor (private auth :AuthService){}
 
  ngOnInit(): void {
-   
-
+  
+  this.auth.getAllUsers ().subscribe (
+    res  =>{
+      for ( let [key ,value] of Object.entries(res)){
+        key === 'data' ? this.users =value : this.users = []
+       }  
+      }
+     )  
+    } 
  }
-}
+
