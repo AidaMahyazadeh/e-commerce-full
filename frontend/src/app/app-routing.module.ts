@@ -3,11 +3,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './pages/components/home/home.component';
 import { LoginComponent } from './pages/components/login/login.component';
 import { SignupComponent } from './pages/components/signup/signup.component';
-
 import { CartComponent } from './pages/components/cart/cart.component';
-import { AuthGuard } from './services/guards/auth.guard';
 import { AdminComponent } from './pages/components/admin/admin.component';
 import { AdminAuthGuard } from './services/guards/admin-auth.guard';
+import { AuthGuard } from './services/guards/auth.guard';
 
 
 const routes: Routes = [
@@ -17,7 +16,8 @@ const routes: Routes = [
   {path :'cart' , component : CartComponent,
     canActivate : [AuthGuard]},
   {path : 'admin' , component : AdminComponent,
-   canActivate : [AdminAuthGuard] }  
+   canActivate : [AdminAuthGuard] },
+    {path :'products', loadChildren : () =>import('./modules/products/products.module').then (m =>m.ProductsModule)}  
   
 ];
 

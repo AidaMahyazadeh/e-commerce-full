@@ -13,8 +13,8 @@ import { LoginComponent } from './pages/components/login/login.component';
 import { CartComponent } from './pages/components/cart/cart.component';
 import { AdminComponent } from './pages/components/admin/admin.component';
 import { AuthInterceptor } from './services/auth.interceptor';
-
-
+import { ProductsModule } from './modules/products/products.module';
+import { ProductsRoutingModule } from './modules/products/products-routing.module';
 
 
 
@@ -27,14 +27,15 @@ import { AuthInterceptor } from './services/auth.interceptor';
     LoginComponent,
     CartComponent,
     AdminComponent
-
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    NgToastModule
+    NgToastModule,
+    ProductsModule,
+    ProductsRoutingModule
   ],
   providers: [{
     provide :HTTP_INTERCEPTORS,

@@ -3,7 +3,6 @@ import categories from '../../../../assets/data/data.json';
 import ICategory from 'src/app/models/category.model';
 
 
-
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',

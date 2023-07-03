@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable} from 'rxjs';
 import ISignUpForm from '../models/signUpForm.model';
 import ILoginForm from '../models/loginForm.model';
-import { Observable} from 'rxjs';
 import IUser from '../models/user.model';
 
 

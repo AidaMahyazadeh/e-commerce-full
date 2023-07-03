@@ -5,6 +5,7 @@ import { NgToastService } from 'ng-angular-popup';
 import ValidateForm from 'src/app/helpers/validateForm';
 import { AuthService } from 'src/app/services/auth.service';
 
+
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',

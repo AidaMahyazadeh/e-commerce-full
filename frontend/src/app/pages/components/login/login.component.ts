@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgToastService } from 'ng-angular-popup';
+import { map } from 'rxjs';
 import ValidateForm from 'src/app/helpers/validateForm';
 import { AuthService } from 'src/app/services/auth.service';
+
 
 
 @Component({
@@ -58,6 +60,16 @@ onLogin () {
   }else{
     ValidateForm.validateAllFields (this.loginForm)
   }
- }
-
 }
+// if (this.loginForm.valid){
+// this.auth.login (this.loginForm.value).subscribe(res =>console.log(res))
+
+
+
+// }else{
+//     ValidateForm.validateAllFields (this.loginForm)
+//   }
+
+//  }
+
+ }
