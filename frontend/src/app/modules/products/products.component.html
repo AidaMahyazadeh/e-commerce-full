@@ -1,12 +1,14 @@
-<!-- <div class="container">
+<div class="container">
     <div class="row">
         <ng-container *ngFor="let product of productsList">
             <div  class="card col-md-3">
-                <img src={{product.imageUrl}} alt="">
-                <h5>{{product.title}}</h5>
-                <p>{{product.price}}</p>
-                <button class="btn btn-primary">Add to cart</button>
+                <img src={{product.imageUrl}} alt={{product.title}}>
+                <h5>{{ product.title}}</h5>
+                <p>{{ product.price}} £</p>
+                <div class="button">
+                    <button routerLink="/cart" class="btn btn-primary">Buy now</button>
+                </div>     
             </div>
         </ng-container>    
     </div>
-</div> -->
+</div>

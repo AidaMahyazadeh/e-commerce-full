@@ -1,7 +1,7 @@
  <div class="container">
     <ul class="list">
         <li   *ngFor="let category of categories">
-          <a routerLink="/product/{{category.id}}">
+          <a routerLink="/products">
             <img [src]="category.imageUrl"  [alt]="category.title">
             <div class="body">
               <h2>{{category.title}}</h2>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import categories from '../../../../assets/data/data.json';
 import ICategory from 'src/app/models/category.model';
+import { ProductsService } from 'src/app/services/products.service';
 
 
 @Component({
@@ -10,7 +11,8 @@ import ICategory from 'src/app/models/category.model';
 })
 export class HomeComponent {
   categories ! :ICategory [];
+  constructor (private category : ProductsService){}
 ngOnInit(): void{
- this.categories =categories;
+ this.category.getCategories().subscribe(res =>this.categories=res)
 }
 }
