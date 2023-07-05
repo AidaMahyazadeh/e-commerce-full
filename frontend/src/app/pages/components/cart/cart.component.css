@@ -1,2 +1,20 @@
 
+.card{
+    height: 60vh;
+    margin:auto;
+    padding: 25px;
+}
 
+.center{
+    text-align: center;
+}
+
+h4,h6 {
+    font-weight: small;
+}
+
+center .btn{
+    font-size: small;
+    border-radius: 3px;
+    font-weight: 300;
+}

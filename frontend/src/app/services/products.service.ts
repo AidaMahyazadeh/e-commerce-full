@@ -19,4 +19,5 @@ export class ProductsService {
   getProducts() :Observable <IProduct[]>{
     return this.http.get<IProduct[]>(this.hatUrl);   
   }
+
 }

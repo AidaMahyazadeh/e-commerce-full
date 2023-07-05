@@ -6,7 +6,7 @@
                 <h5>{{ product.title}}</h5>
                 <p>{{ product.price}} £</p>
                 <div class="button">
-                    <button routerLink="/cart" class="btn btn-primary">Buy now</button>
+                    <button (click)="buyProduct (product.id)" class="btn btn-primary">Buy now</button>
                 </div>     
             </div>
         </ng-container>    

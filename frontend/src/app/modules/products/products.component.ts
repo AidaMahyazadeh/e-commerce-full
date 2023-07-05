@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import IProduct from 'src/app/models/product.model';
 import { ProductsService } from 'src/app/services/products.service';
 
@@ -10,18 +11,20 @@ import { ProductsService } from 'src/app/services/products.service';
 })
 export class ProductsComponent implements OnInit {
  productsList :IProduct [] = []; 
- productQuantity =0;
- constructor (private products :ProductsService){}
+ productQuantity !:number;
+ constructor (
+  private products :ProductsService,
+  private router :Router
+  ){}
  
   ngOnInit(): void {
-   this.products.getProducts().subscribe(res =>{
-    console.log(res)
-     this.productsList = res 
-    
-   }
-    ) 
+   this.products.getProducts().subscribe( res => this.productsList =res  
+ ) 
+  }  
+
+  buyProduct (id :number) {
+   this.router.navigate(['cart'])
   }
-   
 }
 
 
