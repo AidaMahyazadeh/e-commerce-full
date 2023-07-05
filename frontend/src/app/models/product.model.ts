@@ -3,5 +3,5 @@ export default interface IProduct {
     title : string;
     imageUrl : string;
     price : number;
-    quantity : number;
+    quantity : number ;
 }

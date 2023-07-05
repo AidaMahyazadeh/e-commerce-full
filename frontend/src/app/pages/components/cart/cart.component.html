@@ -1,17 +1,17 @@
-<ng-container *ngIf="isCartEmpty"  >
+<ng-container *ngIf="products.length ==0"  >
     <div class="container">
-        <div class="card">
-            <h5 class="card-title">My Cart</h5>
-        </div>
         <div class="center">
-            <h4>Your cart is empty!
-            </h4>
+          <div>
+            <i class='fa fa-shopping-bag fa-fw fa-3x'></i>
+            <h4>Your cart is empty.</h4>
+          </div>
+           
             <h6>Add item to it now</h6>
             <button routerLink="/products" class="btn btn-primary">Shop Now</button>
         </div>
     </div>
 </ng-container>
-<ng-container *ngIf="!isCartEmpty">
+<ng-container *ngIf="products.length!=0">
   <div class="container">
     <div class="card">
         <div class="product">
@@ -26,16 +26,31 @@
                  </tr>
                </thead>
                <tbody>
-                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                 <tr *ngFor="let product of products ">
+            
+                    <td>{{product.title}}</td>
+                    <td><img src="{{product.imageUrl}}" alt="{{product.title}}"></td>
+                    <td>{{product.price}}£</td>
+                    <td><select [(ngModel)]="product.quantity">
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                    </select></td>
+                    <td>{{product.price*product.quantity}}£</td>
 
-                    <td>
-                        <button class="btn btn-danger" >delete</button>
+                     <td>
+                        <button class="btn btn-danger" (click)="removeProduct(product)" >delete</button>
                     </td>
+                 </tr>
+                 <tr>
+                  <td>
+                    <button class="btn btn-danger" (click)="removeAllProducts()" >Delete All Items</button>
+                  </td>
+                  <td>
+                    <button class="btn btn-primary" routerLink="/products">Add more item</button>
+                  </td>
+                  <td > <strong>Total : {{totalPrice}}£</strong> </td>
                  </tr>
                </tbody>
             </table>

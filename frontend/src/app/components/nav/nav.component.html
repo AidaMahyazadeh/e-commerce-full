@@ -21,7 +21,8 @@
             </li>
             <li>
                 <a routerLink="/cart">cart 
-                    <span class="fa fa-shopping-cart"></span>
+                    <span class="fa fa-cart-plus"></span>
+                    <span *ngIf="cartItems> 0" class="badge bg-danger">{{cartItems}}</span>
                 </a>
             </li>
         </ul>

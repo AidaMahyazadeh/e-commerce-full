@@ -8,7 +8,7 @@ import { AppComponent } from './app.component';
 import { NavComponent } from './components/nav/nav.component';
 import { HomeComponent } from './pages/components/home/home.component';
 import { SignupComponent } from './pages/components/signup/signup.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './pages/components/login/login.component';
 import { CartComponent } from './pages/components/cart/cart.component';
 import { AdminComponent } from './pages/components/admin/admin.component';
@@ -32,7 +32,8 @@ import { ProductsRoutingModule } from './modules/products/products-routing.modul
     ReactiveFormsModule,
     HttpClientModule,
     NgToastModule,
-    ProductsRoutingModule
+    ProductsRoutingModule,
+    FormsModule
   ],
   providers: [{
     provide :HTTP_INTERCEPTORS,
