@@ -8,26 +8,30 @@ import { BehaviorSubject } from 'rxjs';
 export class CartService {
   
   cartItemList :IProduct[] =[];
-  productList = new BehaviorSubject<IProduct []>([]);
+  productList$ = new BehaviorSubject<IProduct []>([]);
+
 
   constructor() { }
 
    getProducts () {
-   return this.productList.asObservable()
+   return this.productList$.asObservable()
    }
 
    addToCart (product :IProduct){
     this.cartItemList.push(product)
-    this.productList.next(this.cartItemList)
+    this.productList$.next(this.cartItemList)
     this.getTotalPrice()
     console.log(this.cartItemList)
    }
+
+  
    
    getTotalPrice ():number{
     let totalPrice =0;
+    let total =0
     this.cartItemList.map (product => {
-      totalPrice+= product.price*product.quantity
-     console.log(totalPrice)
+    totalPrice+= product.price*product.quantity
+   
     })
     return totalPrice;
    }
@@ -37,13 +41,13 @@ export class CartService {
      if(product.id === item.id){
       this.cartItemList.splice(index,1)
      }
-     this.productList.next(this.cartItemList)
+     this.productList$.next(this.cartItemList)
     })
    }
 
    removeAllCartItem (){
     this.cartItemList =[]
-    this.productList.next(this.cartItemList)
+    this.productList$.next(this.cartItemList)
    }
   
 }

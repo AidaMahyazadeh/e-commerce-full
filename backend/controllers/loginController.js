@@ -8,7 +8,7 @@ const loginController = async (req,res) =>{
     const user = await User.findOne ({username});
     if (!user) {
         return res.status (404).json({
-            message : 'user not found'
+            message : 'There is no account with this username, you should create  an acount.'
         })
     }
     if ( !await bcrypt.compare(password,user.password)){

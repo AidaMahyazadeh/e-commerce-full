@@ -11,6 +11,7 @@ export class CartComponent implements OnInit {
 
   products !:IProduct[];
   totalPrice =0;
+  
 
  constructor (private cart :CartService){}
    
@@ -19,9 +20,10 @@ export class CartComponent implements OnInit {
     res =>{
       this.products =res
       this.products.forEach(product =>{
-        Object.assign(this.products,{totalPrice : 0})
+        Object.assign(product,{totalPrice : 0})
       })
       this.totalPrice=this.cart.getTotalPrice()
+     
     }
    )
  }
