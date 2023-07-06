@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgToastService } from 'ng-angular-popup';
-import ValidateForm from 'src/app/helpers/validateForm';
 import { AuthService } from 'src/app/services/auth.service';
 
 
@@ -45,6 +44,7 @@ hideOrShowPassword () {
     if (this.signUpForm.valid){
        this.auth.signUp (this.signUpForm.value).subscribe ({
         next : (res=>{
+          //console.log(res)
           this.toast.success({
             detail : 'SUCCESS',
             summary : `welcome ${this.signUpForm.controls['firstname'].value}`,
@@ -61,8 +61,12 @@ hideOrShowPassword () {
         })
       })
     
-    }else{
-      ValidateForm.validateAllFields (this.signUpForm)
+    }else {
+      this.toast.warning({
+        detail : 'warning',
+        summary : 'You should fill in all fields.',
+        duration : 3000 
+      })
     }
   }
 

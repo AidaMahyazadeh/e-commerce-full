@@ -3,7 +3,6 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgToastService } from 'ng-angular-popup';
 import { map } from 'rxjs';
-import ValidateForm from 'src/app/helpers/validateForm';
 import { AuthService } from 'src/app/services/auth.service';
 
 
@@ -44,7 +43,7 @@ onLogin () {
   if (this.loginForm.valid){  
   this.auth.login(this.loginForm.value).subscribe( {
     next :(res) =>{
-       //console.log(res)
+       console.log(res)
     this.auth.storeToken (res.token)
     this.auth.storeRole(res.user.role)
     res.user.role ==='admin' ?  this.router.navigate (['admin']) : this.router.navigate (['cart'])
@@ -62,7 +61,10 @@ onLogin () {
   }
     ) 
   }else{
-    ValidateForm.validateAllFields (this.loginForm)
+    this.toast.warning ({
+      detail : 'warning',
+      summary : 'You should fill in all fields .'
+    })
   }
 }
 }
