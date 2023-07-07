@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import IProduct from 'src/app/models/product.model';
 import { CartService } from 'src/app/services/cart.service';
 import { ProductsService } from 'src/app/services/products.service';
@@ -11,7 +12,7 @@ import { ProductsService } from 'src/app/services/products.service';
   styleUrls: ['./products.component.css']
 })
 export class ProductsComponent implements OnInit {
- productsList :IProduct [] = []; 
+ productsList$ !:Observable <IProduct []> ; 
  quantity !:number ;
  
  constructor (
@@ -21,10 +22,10 @@ export class ProductsComponent implements OnInit {
   ){}
  
   ngOnInit(): void {
-   this.products.getProducts().subscribe( res => 
-    this.productsList =res
-    
- ) 
+      this.productsList$ = this.products.getProducts()
+//    this.products.getProducts().subscribe( res => 
+//     this.productsList =res  
+//  ) 
   }  
 
   addItemToCart(product :IProduct) {

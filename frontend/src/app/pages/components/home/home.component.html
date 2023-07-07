@@ -1,6 +1,6 @@
  <div class="container">
     <ul class="list">
-        <li   *ngFor="let category of categories">
+        <li   *ngFor="let category of categories$ |async">
           <a routerLink="/products">
             <img [src]="category.imageUrl"  [alt]="category.title">
             <div class="body">

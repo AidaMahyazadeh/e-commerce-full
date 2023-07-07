@@ -28,10 +28,8 @@ export class CartService {
    
    getTotalPrice ():number{
     let totalPrice =0;
-    let total =0
     this.cartItemList.map (product => {
     totalPrice+= product.price*product.quantity
-   
     })
     return totalPrice;
    }

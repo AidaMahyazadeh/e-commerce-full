@@ -1,6 +1,6 @@
 <div class="container">
     <div class="row">
-        <ng-container *ngFor="let product of productsList">
+        <ng-container *ngFor="let product of productsList$ |async">
             <div  class="card col-md-3">
                 <img src={{product.imageUrl}} alt={{product.title}}>
                 <h5>{{ product.title}}</h5>
