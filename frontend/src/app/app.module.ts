@@ -5,7 +5,6 @@ import { NgToastModule } from 'ng-angular-popup'
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
-import { NavComponent } from './components/nav/nav.component';
 import { HomeComponent } from './shared/components/home/home.component';
 import { SignupComponent } from './shared/components/signup/signup.component';
 import { LoginComponent } from './shared/components/login/login.component';
@@ -13,6 +12,8 @@ import { CartComponent } from './shared/components/cart/cart.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProductsRoutingModule } from './modules/products/products-routing.module';
 import { AuthInterceptor } from './core/services/auth.interceptor';
+import { NavComponent } from './components/nav/nav.component';
+
 
 
 
@@ -34,6 +35,7 @@ import { AuthInterceptor } from './core/services/auth.interceptor';
     NgToastModule,
     ProductsRoutingModule,
     FormsModule
+  
   ],
   providers: [{
     provide :HTTP_INTERCEPTORS,
