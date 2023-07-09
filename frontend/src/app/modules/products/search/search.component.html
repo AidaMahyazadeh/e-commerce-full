@@ -1,0 +1,8 @@
+<select class="container"  (change)="onShowCategory($event)" >
+    <option class="text-center text-muted" value="none">select category</option>
+    <option ><a  routerLink="/products">select all categories</a></option>
+    <option  *ngFor="let category of categories" value={{category}} >{{category}}</option>
+</select>
+
+
+

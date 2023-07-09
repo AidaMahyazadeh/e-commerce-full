@@ -1,0 +1,10 @@
+ .container{
+    margin-top: auto;
+    width: 200px;
+    padding: 2px 20px;
+    height:30px ;
+   display: flex;
+   border: 1px solid purple;
+   border-radius: 4px;
+   color: blueviolet;
+    }  

@@ -18,6 +18,7 @@ import { NavComponent } from './components/nav/nav.component';
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,7 +26,8 @@ import { NavComponent } from './components/nav/nav.component';
     HomeComponent,
     SignupComponent,
     LoginComponent,
-    CartComponent
+    CartComponent,
+    
   ],
   imports: [
     BrowserModule,
