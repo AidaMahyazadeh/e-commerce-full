@@ -10,7 +10,8 @@
                     <button (click)="addItemToCart (product)" class="btn btn-primary" >Buy now</button>
                 </div>     
             </div>
-        </ng-container>   
+        </ng-container> 
+     <app-product [category]="selectedCategory"></app-product>   
      <router-outlet></router-outlet>
     </div>
 </div>

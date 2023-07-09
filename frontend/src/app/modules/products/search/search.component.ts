@@ -14,6 +14,6 @@ export class SearchComponent {
   onShowCategory (event :Event){
     this. category= (event.target as HTMLSelectElement).value
     this.showCategory.emit(this. category) 
-     console.log(this. category,typeof this. category)
+     //console.log(this. category,typeof this. category)
    }
 }

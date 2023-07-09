@@ -35,7 +35,7 @@ export class ProductsComponent implements OnInit {
 
   onShowSelectedCategory(newCategory:string){ 
     this.selectedCategory=newCategory
-    console.log(this.selectedCategory,typeof this.selectedCategory)
+    // console.log(this.selectedCategory,typeof this.selectedCategory)
     }
 }
 
