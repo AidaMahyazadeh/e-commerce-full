@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgToastService } from 'ng-angular-popup';
-import { AuthService } from 'src/app/services/auth.service';
+import { AuthenticationService } from 'src/app/core/services/authentication.service';
+
 
 
 @Component({
@@ -19,7 +20,7 @@ export class SignupComponent implements OnInit{
   passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,10}$/;
 
 constructor(
-  private auth : AuthService,
+  private auth : AuthenticationService,
   private router : Router,
   private toast : NgToastService
   ){}

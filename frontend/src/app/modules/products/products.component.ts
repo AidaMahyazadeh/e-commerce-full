@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-
-import { CartService } from 'src/app/services/cart.service';
-import { ProductsService } from 'src/app/services/products.service';
+import { CartService } from 'src/app/core/services/cart.service';
+import { ProductsService } from 'src/app/core/services/products.service';
 import IProduct from 'src/app/shared/models/product.model';
 
 
@@ -23,7 +22,7 @@ export class ProductsComponent implements OnInit {
   ){}
  
   ngOnInit(): void {
-      this.productsList$ = this.products.getProducts()
+      this.productsList$ = this.products.getAllProducts()
 //    this.products.getProducts().subscribe( res => 
 //     this.productsList =res  
 //  ) 

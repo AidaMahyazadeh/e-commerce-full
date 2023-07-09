@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/services/auth.service';
-import { CartService } from 'src/app/services/cart.service';
+import { AuthStorageService } from 'src/app/core/services/auth-storage.service';
+import { AuthenticationService } from 'src/app/core/services/authentication.service';
+import { CartService } from 'src/app/core/services/cart.service';
+
 
 
 @Component({
@@ -13,7 +15,7 @@ export class NavComponent implements OnInit{
   crownIcon = './assets/icons/crown.svg';
   cartItems !:number;
   constructor (
-    private auth : AuthService,
+    private authStorage :AuthStorageService ,
     private router :Router,
     private cart :CartService
     ){}
@@ -25,11 +27,11 @@ export class NavComponent implements OnInit{
     }
 
     isLoggedin (){
-      return this.auth.isLoggedin()
+      return this.authStorage.isLoggedin()
     }
    
     logout () {
-      this.auth.logout ();
+      this.authStorage.logout ();
       this.cart.removeAllCartItem();
       this.router.navigate (['']);
     }

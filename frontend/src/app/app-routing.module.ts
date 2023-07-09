@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AdminAuthGuard } from './services/guards/admin-auth.guard';
-import { AuthGuard } from './services/guards/auth.guard';
 import { LoginComponent } from './shared/components/login/login.component';
 import { HomeComponent } from './shared/components/home/home.component';
 import { SignupComponent } from './shared/components/signup/signup.component';
 import { CartComponent } from './shared/components/cart/cart.component';
+import { AuthGuard } from './core/services/guards/cart-auth.guard';
+import { AdminAuthGuard } from './core/services/guards/admin-auth.guard';
 
 
 const routes: Routes = [

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthenticationService } from 'src/app/core/services/authentication.service';
 
-import { AuthService } from 'src/app/services/auth.service';
 import IUser from 'src/app/shared/models/user.model';
 
 @Component({
@@ -11,7 +11,7 @@ import IUser from 'src/app/shared/models/user.model';
 export class AdminComponent implements OnInit{
   users !: IUser [];
   
- constructor (private auth :AuthService){}
+ constructor (private auth :AuthenticationService){}
 
  ngOnInit(): void {
   

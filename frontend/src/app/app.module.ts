@@ -10,9 +10,9 @@ import { HomeComponent } from './shared/components/home/home.component';
 import { SignupComponent } from './shared/components/signup/signup.component';
 import { LoginComponent } from './shared/components/login/login.component';
 import { CartComponent } from './shared/components/cart/cart.component';
-import { AuthInterceptor } from './services/auth.interceptor';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProductsRoutingModule } from './modules/products/products-routing.module';
+import { AuthInterceptor } from './core/services/auth.interceptor';
 
 
 

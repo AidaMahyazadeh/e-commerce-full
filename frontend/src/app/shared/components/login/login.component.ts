@@ -3,7 +3,9 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgToastService } from 'ng-angular-popup';
 import { map } from 'rxjs';
-import { AuthService } from 'src/app/services/auth.service';
+import { AuthStorageService } from 'src/app/core/services/auth-storage.service';
+import { AuthenticationService } from 'src/app/core/services/authentication.service';
+
 
 
 
@@ -20,7 +22,8 @@ eyeIcon ='fa-eye-slash';
 
 
 constructor (
-  private auth :AuthService,
+  private auth :AuthenticationService,
+  private authStorage :AuthStorageService,
   private router :Router,
   private toast :NgToastService,
  
@@ -44,8 +47,8 @@ onLogin () {
   this.auth.login(this.loginForm.value).subscribe( {
     next :(res) =>{
        console.log(res)
-    this.auth.storeToken (res.token)
-    this.auth.storeRole(res.user.role)
+    this.authStorage.storeToken (res.token)
+    this.authStorage.storeRole(res.user.role)
     res.user.role ==='admin' ?  this.router.navigate (['admin']) : this.router.navigate (['home'])
     this.toast.success({
       detail : 'SUCCESS',
