@@ -9,7 +9,7 @@ import { AdminAuthGuard } from './core/services/guards/admin-auth.guard';
 
 
 const routes: Routes = [
-  {path : '', component:LoginComponent},
+  {path : '', component:LoginComponent,pathMatch : 'full'},
   {path : 'home',component:HomeComponent},
   {path : 'login', component : LoginComponent},
   {path : 'signup', component : SignupComponent},
