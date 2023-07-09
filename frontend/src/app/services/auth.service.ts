@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable} from 'rxjs';
-import ISignUpForm from '../models/signUpForm.model';
-import ILoginForm from '../models/loginForm.model';
-import IUser from '../models/user.model';
+import ISignUpForm from '../shared/models/signUpForm.model';
+import IUser from '../shared/models/user.model';
+import ILoginForm from '../shared/models/loginForm.model';
+
 
 
 @Injectable({

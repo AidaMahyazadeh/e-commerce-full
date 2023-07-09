@@ -1,15 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './pages/components/home/home.component';
-import { LoginComponent } from './pages/components/login/login.component';
-import { SignupComponent } from './pages/components/signup/signup.component';
-import { CartComponent } from './pages/components/cart/cart.component';
 import { AdminAuthGuard } from './services/guards/admin-auth.guard';
 import { AuthGuard } from './services/guards/auth.guard';
+import { LoginComponent } from './shared/components/login/login.component';
+import { HomeComponent } from './shared/components/home/home.component';
+import { SignupComponent } from './shared/components/signup/signup.component';
+import { CartComponent } from './shared/components/cart/cart.component';
 
 
 const routes: Routes = [
-  {path : '', component: HomeComponent, pathMatch : 'full'},
+  {path : '', component:LoginComponent},
+  {path : 'home',component:HomeComponent},
   {path : 'login', component : LoginComponent},
   {path : 'signup', component : SignupComponent},
   {path :'cart' , component : CartComponent,

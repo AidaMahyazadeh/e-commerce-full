@@ -16,8 +16,9 @@ export const AuthGuard = ()=>{
     summary :'you should login first.',
     duration :3000 
   })
+  return false
   }
-  auth.isLoggedin()
+
   return true;
 }
 // @Injectable({

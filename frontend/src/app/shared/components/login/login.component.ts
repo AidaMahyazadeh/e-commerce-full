@@ -46,7 +46,7 @@ onLogin () {
        console.log(res)
     this.auth.storeToken (res.token)
     this.auth.storeRole(res.user.role)
-    res.user.role ==='admin' ?  this.router.navigate (['admin']) : this.router.navigate (['cart'])
+    res.user.role ==='admin' ?  this.router.navigate (['admin']) : this.router.navigate (['home'])
     this.toast.success({
       detail : 'SUCCESS',
       summary : 'You are logged in.',

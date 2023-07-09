@@ -30,6 +30,7 @@ export class NavComponent implements OnInit{
    
     logout () {
       this.auth.logout ();
+      this.cart.removeAllCartItem();
       this.router.navigate (['']);
     }
 }

@@ -12,8 +12,9 @@ export const AdminAuthGuard = () =>{
         toast.warning ({detail : 'warning' ,summary :'you can not access to this page.',
                  duration : 3000
               })
+              return false;
       }
-      auth.isAdmin()
+      
       return true
 }
 

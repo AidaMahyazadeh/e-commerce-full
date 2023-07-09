@@ -6,13 +6,15 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { NavComponent } from './components/nav/nav.component';
-import { HomeComponent } from './pages/components/home/home.component';
-import { SignupComponent } from './pages/components/signup/signup.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { LoginComponent } from './pages/components/login/login.component';
-import { CartComponent } from './pages/components/cart/cart.component';
+import { HomeComponent } from './shared/components/home/home.component';
+import { SignupComponent } from './shared/components/signup/signup.component';
+import { LoginComponent } from './shared/components/login/login.component';
+import { CartComponent } from './shared/components/cart/cart.component';
 import { AuthInterceptor } from './services/auth.interceptor';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProductsRoutingModule } from './modules/products/products-routing.module';
+
+
 
 
 @NgModule({
