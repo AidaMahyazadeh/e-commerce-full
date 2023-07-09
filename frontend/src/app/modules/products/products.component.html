@@ -1,4 +1,4 @@
-<app-search ></app-search>
+<app-search (showCategory)=" onShowSelectedCategory($event)" ></app-search>
 <div class="container">
     <div class="row">
         <ng-container *ngFor="let product of productsList$ |async">

@@ -8,12 +8,12 @@ import { Component, EventEmitter, Output } from '@angular/core';
 export class SearchComponent {
   categories = ['Hats','Jewelery','Women','Men','Eletronic']
   @Output() showCategory =new EventEmitter <string>()
-  selectedCategory :string='';
+  category :string='';
   constructor(){} 
   
   onShowCategory (event :Event){
-    this.selectedCategory= (event.target as HTMLSelectElement).value
-    this.showCategory.emit(this.selectedCategory) 
-     console.log(this.selectedCategory,typeof this.selectedCategory)
+    this. category= (event.target as HTMLSelectElement).value
+    this.showCategory.emit(this. category) 
+     console.log(this. category,typeof this. category)
    }
 }

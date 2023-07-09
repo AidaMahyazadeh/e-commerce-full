@@ -14,6 +14,7 @@ import IProduct from 'src/app/shared/models/product.model';
 export class ProductsComponent implements OnInit {
  productsList$ !:Observable <IProduct []> ; 
  quantity !:number ;
+ selectedCategory !:string
  
  constructor (
   private products :ProductsService,
@@ -31,6 +32,11 @@ export class ProductsComponent implements OnInit {
   addItemToCart(product :IProduct) {
   this.cart.addToCart(product)
   }
+
+  onShowSelectedCategory(newCategory:string){ 
+    this.selectedCategory=newCategory
+    console.log(this.selectedCategory,typeof this.selectedCategory)
+    }
 }
 
 
