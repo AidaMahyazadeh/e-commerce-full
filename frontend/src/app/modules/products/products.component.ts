@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { CartService } from 'src/app/core/services/cart.service';
 import { ProductsService } from 'src/app/core/services/products.service';
@@ -18,7 +17,6 @@ export class ProductsComponent implements OnInit {
  
  constructor (
   private products :ProductsService,
-  private router :Router,
   private cart :CartService
   ){}
  
