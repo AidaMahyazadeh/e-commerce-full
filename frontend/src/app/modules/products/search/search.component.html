@@ -1,7 +1,6 @@
-<select class="container"  (change)="onShowCategory($event)" >
-    <option class="text-center text-muted" value="none">select category</option>
-    <option  *ngFor="let category of categories" value={{category}} >{{category}}</option>
-</select>
-
-
+        <select class="container"  (change)="onShowCategory($event)" >
+            <option class="text-center text-muted" value="">select category</option>
+            <option  *ngFor="let category of categories$ |async" value={{category}} >{{category}}</option>
+        </select>
+  
 

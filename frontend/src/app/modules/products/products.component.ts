@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Subject, combineLatest, map } from 'rxjs';
 import { CartService } from 'src/app/core/services/cart.service';
 import { ProductsService } from 'src/app/core/services/products.service';
 import IProduct from 'src/app/shared/models/product.model';
@@ -10,31 +10,45 @@ import IProduct from 'src/app/shared/models/product.model';
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.css']
 })
-export class ProductsComponent implements OnInit {
- productsList$ !:Observable <IProduct []> ; 
+export class ProductsComponent {
  quantity !:number ;
- selectedCategory !:string
+ selectedCategory !:string;
+ productsList$ = this.productsService.getAllProducts();
+ selectedCategorySubject = new Subject <string>();
+ selectedCategoryAction$ = this.selectedCategorySubject.asObservable();
  
  constructor (
-  private products :ProductsService,
+  private productsService :ProductsService,
   private cart :CartService
   ){}
  
-  ngOnInit(): void {
-      this.productsList$ = this.products.getAllProducts()
-//    this.products.getProducts().subscribe( res => 
-//     this.productsList =res  
-//  ) 
-  }  
 
-  addItemToCart(product :IProduct) {
-  this.cart.addToCart(product)
-  }
+   filteredProducts$ = combineLatest(([
+    this.productsList$,
+    this.selectedCategoryAction$
+  ])).pipe(
+     map(([products,selectedCategory])=>{
+      return products.filter(product =>
+          product.category ===selectedCategory
+        )
+     })
+   )
 
-  onShowSelectedCategory(newCategory:string){ 
+//  filteredProducts$ = this.productsService.getAllProducts().pipe (
+//   map(products => {
+//     return products.filter (product => product.category===this.selectedCategory)
+//   })
+//  )
+ 
+   onShowSelectedCategory(newCategory:string){ 
     this.selectedCategory=newCategory
+    this.selectedCategorySubject.next(this.selectedCategory)
     // console.log(this.selectedCategory,typeof this.selectedCategory)
     }
+
+    addItemToCart(product :IProduct) {
+      this.cart.addToCart(product)
+      }
 }
 
 

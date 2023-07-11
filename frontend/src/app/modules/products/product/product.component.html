@@ -1,15 +1,15 @@
-<div class="container">
+<!-- <div class="container">
     <div class="row">
-        <ng-container >
+        <ng-container *ngFor="let product of filteredProduct$ |async">
             <div  class="card col-md-3">
-                <img  >
-                <h5>title</h5>
-                <p>price£</p>
+                <img src={{product.imageUrl}} alt={{product.title}} >
+                <h5>{{product.title}}</h5>
+                <p>{{ product.price}} £</p>
                 <div class="button">
-                    <button  class="btn btn-primary" >Buy now</button>
+                    <button (click)="addItemToCart (product)" class="btn btn-primary" >Buy now</button>
                 </div>     
             </div>
         </ng-container>   
      <router-outlet></router-outlet>
     </div>
-</div>
+</div> -->

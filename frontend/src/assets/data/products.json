@@ -24,14 +24,16 @@
     "title": "Brown Brim",
     "imageUrl": "https://i.ibb.co/ZYW3VTp/brown-brim.png",
     "price": 25,
-    "quantity" : 1
+    "quantity" : 1,
+    "category":"hats"
   },
   {
     "id": 22,
     "title": "Brown Cowboy",
     "imageUrl": "https://i.ibb.co/QdJwgmp/brown-cowboy.png",
     "price": 35,
-    "quantity" : 1
+    "quantity" : 1,
+    "category":"hats"
   },
   {
     "id": 23,
