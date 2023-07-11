@@ -1,7 +1,7 @@
 <div class="outer">
     <div class="container">
       <div class="row">
-          <div class=" panel border bg-white">
+          <div class=" panel ">
               <div class="panel-heading text-center mb-10">
                   <h3 class="pt-4 font-weight-bold">Sign Up</h3>
               </div>
@@ -55,7 +55,7 @@
                       </div>
                       <small class="text-danger" *ngIf="signUpForm.controls['password'].dirty && signUpForm.hasError('required','password')">Password is required.</small>
                       <small class="text-danger" *ngIf="signUpForm.controls['password'].dirty &&signUpForm.hasError('pattern','password')">Password should have Minimum eight and maximum 10 characters, at least one uppercase letter, one lowercase letter, one number and one special character.</small>
-                   <button (click)="onSignUp()" type="submit" class="btn btn-primary mt-4 w-100">Sign Up</button>
+                   <button (click)="onSignUp()" type="submit" class="btn  mt-4 w-100">Sign Up</button>
                       <div class="text-center pt-4 text-muted">Already have account?<a routerLink="/login">Login </a> </div>
                   </form>
   

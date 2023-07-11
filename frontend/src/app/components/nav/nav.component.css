@@ -1,13 +1,17 @@
 header{
    position: relative;
-   background-color: white;
+   background-color:#f582e5;
    padding: 0;
-   border-bottom: 1px solid black;
+   border-bottom: 1px solid #d95dd1;
+}
+
+img{
+    fill: beige;
 }
 
 a{
     text-decoration: none;
-    color: black;
+    color: beige;
 }
 
 .container{

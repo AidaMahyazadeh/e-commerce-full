@@ -11,13 +11,15 @@ img{
     display: flex;
     padding: 20px;
     margin: 15px;
+    border: 1px solid #f582e5;
+
 }
 
 
 .btn{
-    background:rgb(0, 149, 255);
+    background-color: #f582e5;
     font-size:16px;
-    color:#fff;
+    color:beige;
     margin:0 8px;
 }
 
