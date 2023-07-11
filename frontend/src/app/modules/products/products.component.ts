@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Observable } from 'rxjs';
 
 import { CartService } from 'src/app/core/services/cart.service';
 import { ProductsService } from 'src/app/core/services/products.service';
@@ -14,7 +15,8 @@ export class ProductsComponent  {
  quantity !:number ;
  selectedCategory !:string;
  productsList$ = this.productsService.getAllProducts();
- ProductsBycategory$= this.productsService.getProductsByCategory(this.selectedCategory)
+ ProductsBycategory$ !:Observable <IProduct[]>
+//  ProductsBycategory$= this.productsService.getProductsByCategory(this.selectedCategory)
 
  
  constructor (
@@ -22,9 +24,13 @@ export class ProductsComponent  {
   private cart :CartService
   ){}
  
+  getProductsCategory(category :string){
+    return this.ProductsBycategory$= this.productsService.getProductsByCategory(category)
+  } 
 
    onShowSelectedCategory(newCategory:string){ 
     this.selectedCategory=newCategory
+    this.getProductsCategory(this.selectedCategory)
     // console.log(this.selectedCategory,typeof this.selectedCategory)
     }
 
