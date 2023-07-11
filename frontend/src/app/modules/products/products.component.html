@@ -1,8 +1,8 @@
 <app-search (showCategory)=" onShowSelectedCategory($event)" ></app-search>
 <div class="container">
     <div class="row">
-        <ng-container *ngFor="let product of productsList$ |async">
-            <div  class="card col-md-3">
+        <ng-container *ngIf="!selectedCategory">  
+            <div *ngFor="let product of productsList$ |async" class="card col-md-3">
                 <img src={{product.imageUrl}} alt={{product.title}}>
                 <h5>{{ product.title}}</h5>
                 <p>{{ product.price}} £</p>
@@ -12,7 +12,18 @@
                 </div>     
             </div>
         </ng-container> 
-     <app-product [category]="selectedCategory"></app-product>   
+        <ng-container  >  
+            <div *ngFor="let product of  ProductsBycategory$ |async" class="card col-md-3">
+                <img src={{product.imageUrl}} alt={{product.title}}>
+                <h5>{{ product.title}}</h5>
+                <p>{{ product.price}} £</p>
+                <!-- <p>{{ product.category}}</p> -->
+                <div class="button">
+                    <button (click)="addItemToCart (product)" class="btn btn-primary" >Buy now</button>
+                </div>     
+            </div>
+        </ng-container> 
+     <!-- <app-product [categories]="selectedCategory"></app-product>    -->
      <router-outlet></router-outlet>
     </div>
 </div>

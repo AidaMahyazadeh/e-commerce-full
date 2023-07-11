@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Subject, combineLatest, map } from 'rxjs';
+import { Component } from '@angular/core';
+
 import { CartService } from 'src/app/core/services/cart.service';
 import { ProductsService } from 'src/app/core/services/products.service';
 import IProduct from 'src/app/shared/models/product.model';
@@ -10,12 +10,12 @@ import IProduct from 'src/app/shared/models/product.model';
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.css']
 })
-export class ProductsComponent {
+export class ProductsComponent  {
  quantity !:number ;
  selectedCategory !:string;
  productsList$ = this.productsService.getAllProducts();
- selectedCategorySubject = new Subject <string>();
- selectedCategoryAction$ = this.selectedCategorySubject.asObservable();
+ ProductsBycategory$= this.productsService.getProductsByCategory(this.selectedCategory)
+
  
  constructor (
   private productsService :ProductsService,
@@ -23,26 +23,8 @@ export class ProductsComponent {
   ){}
  
 
-   filteredProducts$ = combineLatest(([
-    this.productsList$,
-    this.selectedCategoryAction$
-  ])).pipe(
-     map(([products,selectedCategory])=>{
-      return products.filter(product =>
-          product.category ===selectedCategory
-        )
-     })
-   )
-
-//  filteredProducts$ = this.productsService.getAllProducts().pipe (
-//   map(products => {
-//     return products.filter (product => product.category===this.selectedCategory)
-//   })
-//  )
- 
    onShowSelectedCategory(newCategory:string){ 
     this.selectedCategory=newCategory
-    this.selectedCategorySubject.next(this.selectedCategory)
     // console.log(this.selectedCategory,typeof this.selectedCategory)
     }
 
@@ -52,4 +34,27 @@ export class ProductsComponent {
 }
 
 
+//  selectedCategorySubject = new Subject <string>();
+//  selectedCategoryAction$ = this.selectedCategorySubject.asObservable();
 
+  // getProductsCategory(){
+  //   this.productsService.getProductsByCategory(this.selectedCategory)
+  // }
+
+
+  //  filteredProducts$ = combineLatest(([
+  //   this.productsList$,
+  //   this.selectedCategoryAction$
+  // ])).pipe(
+  //    map(([products,selectedCategory])=>{
+  //     return products.filter(product =>
+  //         product.category ===selectedCategory
+  //       )
+  //    })
+  //  )
+
+//  filteredProducts$ = this.productsService.getAllProducts().pipe (
+//   map(products => {
+//     return products.filter (product => product.category===this.selectedCategory)
+//   })
+//  )

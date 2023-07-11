@@ -22,6 +22,14 @@ export class ProductsService {
       map(products => [...new Set (products.map(product=>product.category))])   
     )
    }
+
+
+   getProductsByCategory(category :string):Observable <IProduct[]>{
+    return this.getAllProducts().pipe(
+      map(products=> products.filter(product =>product.category==category))
+    )
+  
+   }
 }
 
 

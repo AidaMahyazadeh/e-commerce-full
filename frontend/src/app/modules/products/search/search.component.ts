@@ -7,8 +7,7 @@ import { ProductsService } from 'src/app/core/services/products.service';
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css']
 })
-export class SearchComponent {
-    // categories = ["men's clothing","women's clothing","jewelery","hats","eletronic"]
+export class SearchComponent {  
   categories$ = this.productService.getAllCategories()
   categoriesunique : string[]=[]
   @Output() showCategory =new EventEmitter <string>()
