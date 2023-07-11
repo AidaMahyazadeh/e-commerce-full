@@ -7,7 +7,7 @@ import { ProductsService } from 'src/app/core/services/products.service';
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css']
 })
-export class SearchComponent implements OnInit {
+export class SearchComponent {
     // categories = ["men's clothing","women's clothing","jewelery","hats","eletronic"]
   categories$ = this.productService.getAllCategories()
   categoriesunique : string[]=[]
@@ -15,13 +15,6 @@ export class SearchComponent implements OnInit {
   category :string='';
  
   constructor(private productService :ProductsService){} 
-
-  ngOnInit(): void {
-  
-  }
-
-
-  
 
   onShowCategory (event :Event){
     this. category= (event.target as HTMLSelectElement).value
