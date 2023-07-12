@@ -1,25 +1,30 @@
-<app-search (showCategory)=" onShowSelectedCategory($event)" ></app-search>
-<div class="container">
-    <div class="row">
-        <ng-container *ngIf="!selectedCategory">  
-            <div *ngFor="let product of productsList$ |async" class="card col-md-3">
-                <img src={{product.imageUrl}} alt={{product.title}}>
-                <h5>{{ product.title}}</h5>
-                <p>{{ product.price}} £</p>
+  <app-search (showCategory)=" onShowSelectedCategory($event)" ></app-search>
+  <div>
+    <ng-container *ngIf="productsList$ |async as products"> 
+      <div class="container">
+        <div class="row">
+            <div class="culomn">
+            <div *ngFor="let product of products |slice: (page-1) * pageSize : page * pageSize" class="card">
+                <img class="card-img-top" src={{product.imageUrl}} alt={{product.title}}>
+                <div class="card-body">
+                <h5 class="catd-title">{{ product.title}}</h5>
+                <p>{{ product.price}} £</p>  
+                </div>
                 <div class="button">
                     <button (click)="addItemToCart (product)" class="btn btn-primary" >Buy now</button>
                 </div>     
             </div>
+         </div>
+        </div>
+        <ngb-pagination class="d-flex justify-content-center"
+        [(page)]="page"
+        [pageSize]="pageSize"
+        [collectionSize]="products.length"
+        ></ngb-pagination>
+       </div>
         </ng-container> 
-        <ng-container  >  
-            <div *ngFor="let product of  ProductsBycategory$ |async" class="card col-md-3">
-                <img src={{product.imageUrl}} alt={{product.title}}>
-                <h5>{{ product.title}}</h5>
-                <p>{{ product.price}} £</p>
-                <div class="button">
-                    <button (click)="addItemToCart (product)" class="btn" >Buy now</button>
-                </div>     
-            </div>
-        </ng-container> 
-    </div>
-</div>
+       <router-outlet></router-outlet>
+       <app-category ></app-category>
+    </div>  
+     
+    

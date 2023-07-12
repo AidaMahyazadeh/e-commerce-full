@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { CartService } from 'src/app/core/services/cart.service';
 import { ProductsService } from 'src/app/core/services/products.service';
@@ -13,22 +14,24 @@ import IProduct from 'src/app/shared/models/product.model';
 export class ProductsComponent  {
  quantity !:number ;
  selectedCategory !:string;
- productsList$ = this.productsService.getAllProducts();
- ProductsBycategory$ !:Observable <IProduct[]>
+ productsList$ :Observable<IProduct[]>= this.productsService.getAllProducts();
+ page = 1;
+ pageSize = 4;
 
 
  constructor (
   private productsService :ProductsService,
-  private cart :CartService
+  private cart :CartService,
+  private router :Router
   ){}
  
-  getProductsCategory(category :string){
-    return this.ProductsBycategory$= this.productsService.getProductsByCategory(category)
-  } 
+  // getProductsCategory(category :string){
+  //   return this.ProductsBycategory$= this.productsService.getProductsByCategory(category)
+  // } 
 
    onShowSelectedCategory(newCategory:string){ 
     this.selectedCategory=newCategory
-    this.getProductsCategory(this.selectedCategory)
+    this.router.navigate ([`products/${this.selectedCategory}`])
     // console.log(this.selectedCategory,typeof this.selectedCategory)
     }
 

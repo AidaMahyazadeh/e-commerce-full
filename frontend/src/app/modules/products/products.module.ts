@@ -4,6 +4,8 @@ import { ProductsRoutingModule } from './products-routing.module';
 import { ProductsComponent } from './products.component';
 import { RouterModule } from '@angular/router';
 import { SearchComponent } from './search/search.component';
+import { NgbPagination } from '@ng-bootstrap/ng-bootstrap';
+import { CategoryComponent } from './category/category.component';
 
 
 
@@ -11,11 +13,13 @@ import { SearchComponent } from './search/search.component';
   declarations: [
     ProductsComponent,
     SearchComponent,
+    CategoryComponent,
     
   ],
   imports: [
     CommonModule,
-    ProductsRoutingModule
+    ProductsRoutingModule,
+    NgbPagination
   ],
   exports : [RouterModule]
 })

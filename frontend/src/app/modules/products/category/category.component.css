@@ -10,7 +10,7 @@ img{
 .culomn{
     display: flex;
     flex-direction: row;
-    width: 100%;
+    width: auto;
 }
 
  .card { 
