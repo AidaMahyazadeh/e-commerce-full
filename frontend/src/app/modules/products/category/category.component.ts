@@ -1,5 +1,5 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component,OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { CartService } from 'src/app/core/services/cart.service';
 import { ProductsService } from 'src/app/core/services/products.service';
@@ -19,7 +19,8 @@ export class CategoryComponent implements OnInit{
  constructor(
   private productService :ProductsService,
   private activatedRout :ActivatedRoute,
-  private cart :CartService
+  private cart :CartService,
+  private router:Router
   ) {}
   
   ngOnInit(): void {
@@ -28,16 +29,15 @@ export class CategoryComponent implements OnInit{
       this.ProductsBycategory$= this.productService.getProductsByCategory(this. categorySelected)
     }
     )
-   // console.log(this.activatedRout)
+  
   }
   
   addItemToCart(product :IProduct) {
     this.cart.addToCart(product)
     }
  
- 
+   goBack (){
+    this.router.navigate(['products'])
+   }
 
-//  getProductsCategory(category :string){
-//   return this.ProductsBycategory$= this.productsService.getProductsByCategory(category)
-// } 
 }
