@@ -13,9 +13,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProductsRoutingModule } from './modules/products/products-routing.module';
 import { AuthInterceptor } from './core/services/auth.interceptor';
 import { NavComponent } from './components/nav/nav.component';
-
-
-
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -27,7 +25,7 @@ import { NavComponent } from './components/nav/nav.component';
     SignupComponent,
     LoginComponent,
     CartComponent,
-    
+   
   ],
   imports: [
     BrowserModule,
@@ -36,14 +34,17 @@ import { NavComponent } from './components/nav/nav.component';
     HttpClientModule,
     NgToastModule,
     ProductsRoutingModule,
-    FormsModule
-  
+    FormsModule,
+    NgbModalModule
   ],
-  providers: [{
+  providers: [
+    {
     provide :HTTP_INTERCEPTORS,
     useClass :AuthInterceptor,
     multi :true
-  }],
-  bootstrap: [AppComponent]
+  }
+],
+  bootstrap: [AppComponent],
+  
 })
 export class AppModule { }
