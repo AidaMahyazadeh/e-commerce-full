@@ -16,7 +16,6 @@ import { NavComponent } from './components/nav/nav.component';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 
 
-
 @NgModule({
   declarations: [
     AppComponent,
