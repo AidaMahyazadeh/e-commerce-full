@@ -36,7 +36,7 @@ export class ProductsComponent  {
     }
 
     addItemToCart(product :IProduct) {
-      this.cart.addToCart(product)
+      this.cart.addItems(product)
       }
 }
 
