@@ -1,6 +1,6 @@
 header{
    position: relative;
-   background-color:#f582e5;
+   background-color:#d573de;
    padding: 0;
    border-bottom: 1px solid #d95dd1;
 }
@@ -33,4 +33,9 @@ ul a{
 
 .badge {
     font-size: xx-small;
+}
+
+.fa-heart{
+    color: beige;
+    margin-top: 18px;
 }
