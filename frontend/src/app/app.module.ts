@@ -14,6 +14,7 @@ import { ProductsRoutingModule } from './modules/products/products-routing.modul
 import { AuthInterceptor } from './core/services/auth.interceptor';
 import { NavComponent } from './components/nav/nav.component';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { WishlistComponent } from './shared/components/wishlist/wishlist.component';
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
     SignupComponent,
     LoginComponent,
     CartComponent,
+    WishlistComponent,
    
   ],
   imports: [
