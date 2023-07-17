@@ -7,8 +7,10 @@ import IProduct from 'src/app/shared/models/product.model';
 })
 export class CartService {
   
-  cartItemList :IProduct[] =[];
+  itemList :IProduct[] =[];
   productList$ = new BehaviorSubject<IProduct []>([]);
+  productsPrice !:number;
+  totalPrice$ = new BehaviorSubject<number>(0);
 
   constructor() { }
 
@@ -16,35 +18,23 @@ export class CartService {
     return this.productList$.asObservable()
     }
  
-    addToCart (product :IProduct){
-     this.cartItemList.push(product)
-     this.productList$.next(this.cartItemList)
-     this.getTotalPrice()
-     console.log(this.cartItemList)
+    addItems (product :IProduct){
+     this.itemList.push(product)
+     this.productList$.next(this.itemList)
     }
- 
-   
     
-    getTotalPrice ():number{
-     let totalPrice =0;
-     this.cartItemList.map (product => {
-     totalPrice+= product.price*product.quantity
-     })
-     return totalPrice;
-    }
- 
-    removeCartItem (product :IProduct) {
-     this.cartItemList.map((item,index) => {
+    removeItem (product :IProduct) {
+     this.itemList.map((item,index) => {
       if(product.id === item.id){
-       this.cartItemList.splice(index,1)
+       this.itemList.splice(index,1)
       }
-      this.productList$.next(this.cartItemList)
+      this.productList$.next(this.itemList)
      })
     }
  
     removeAllCartItem (){
-     this.cartItemList =[]
-     this.productList$.next(this.cartItemList)
+     this.itemList =[]
+     this.productList$.next(this.itemList)
     }
 
 }
