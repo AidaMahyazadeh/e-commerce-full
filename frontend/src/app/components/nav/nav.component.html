@@ -16,7 +16,10 @@
             </a>
             </li>
             <li>
-                <a routerLink="/cart">cart 
+                <span class='fa fa-heart' routerLink="/wishlist"></span>
+            </li>
+            <li>
+                <a class="cart" data-toggle="modal" (click)="open()">cart
                     <span class="fa fa-cart-plus"></span>
                     <span *ngIf="cartItems> 0" class="badge bg-danger">{{cartItems}}</span>
                 </a>
