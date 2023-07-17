@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { AuthStorageService } from 'src/app/core/services/auth-storage.service';
-import { AuthenticationService } from 'src/app/core/services/authentication.service';
 import { CartService } from 'src/app/core/services/cart.service';
+import { CartComponent } from 'src/app/shared/components/cart/cart.component';
 
 
 
@@ -17,7 +18,8 @@ export class NavComponent implements OnInit{
   constructor (
     private authStorage :AuthStorageService ,
     private router :Router,
-    private cart :CartService
+    private cart :CartService,
+    private modalService :NgbModal
     ){}
 
     ngOnInit(): void {
@@ -34,5 +36,9 @@ export class NavComponent implements OnInit{
       this.authStorage.logout ();
       this.cart.removeAllCartItem();
       this.router.navigate (['']);
+    }
+
+    open(){
+     const modalRef = this.modalService.open(CartComponent)
     }
 }
