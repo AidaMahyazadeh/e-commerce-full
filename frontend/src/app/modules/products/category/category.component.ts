@@ -33,7 +33,7 @@ export class CategoryComponent implements OnInit{
   }
   
   addItemToCart(product :IProduct) {
-    this.cart.addToCart(product)
+    this.cart.addItems(product)
     }
  
    goBack (){
