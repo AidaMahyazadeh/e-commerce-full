@@ -6,6 +6,7 @@ import { SignupComponent } from './shared/components/signup/signup.component';
 import { CartComponent } from './shared/components/cart/cart.component';
 import { AuthGuard } from './core/services/guards/cart-auth.guard';
 import { AdminAuthGuard } from './core/services/guards/admin-auth.guard';
+import { WishlistComponent } from './shared/components/wishlist/wishlist.component';
 
 
 const routes: Routes = [
@@ -15,6 +16,7 @@ const routes: Routes = [
   {path : 'signup', component : SignupComponent},
   {path :'cart' , component : CartComponent,
     canActivate : [AuthGuard]},
+  {path :'wishlist', component :WishlistComponent},
   {path :'products', loadChildren : () =>import('./modules/products/products.module').then (m =>m.ProductsModule)},
   { path: 'admin',canActivate : [AdminAuthGuard], loadChildren: () => import('./modules/admin/admin.module').then(m => m.AdminModule) }  
   
