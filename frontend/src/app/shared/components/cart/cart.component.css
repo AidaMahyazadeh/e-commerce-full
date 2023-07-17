@@ -1,10 +1,4 @@
 
-.card{
-    height: 60vh;
-    margin:auto;
-    padding: 25px;
-}
-
 .center{
     text-align: center;
 }
@@ -22,4 +16,21 @@ center .btn{
 
 img{
     width: 120px;
+}
+
+.custom-class{
+  position: fixed;
+  margin: auto;
+  
+}
+
+ .fa-trash {
+   color: red;
+}
+.fa-heart{
+    color: red;
+}
+.fa-heart-o {
+    color :red;
+    cursor: pointer;
 }
