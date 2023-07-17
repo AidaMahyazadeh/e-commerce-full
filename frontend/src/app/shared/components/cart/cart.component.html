@@ -1,18 +1,17 @@
 <ng-container *ngIf="products.length ==0"  >
-    <div class="container">
+    <div >
         <div class="center">
           <div>
             <i class='fa fa-shopping-bag fa-fw fa-3x'></i>
             <h4>Your cart is empty.</h4>
           </div>
-           
             <h6>Add item to it now</h6>
-            <button routerLink="/products" class="btn btn-primary">Shop Now</button>
+            <button routerLink="/products" class="btn btn-primary" (click)="close()">Shop Now</button>
         </div>
     </div>
 </ng-container>
 <ng-container *ngIf="products.length!=0">
-  <div class="container">
+  <div class="custom-class">
     <div class="card">
         <div class="product">
             <table class="table">
@@ -27,20 +26,20 @@
                </thead>
                <tbody>
                  <tr *ngFor="let product of products ">
-            
                     <td>{{product.title}}</td>
                     <td><img src="{{product.imageUrl}}" alt="{{product.title}}"></td>
-                    <td>{{product.price}}£</td>
-                    <td><select [(ngModel)]="product.quantity">
-                      <option value="1">1</option>
+                    <td>{{product.price | currency :'EUR'}}</td>
+                    <td><select [(ngModel)]="product.quantity" (click)="changeQuantity()">
+                      <option value="1" >1</option>
                       <option value="2">2</option>
                       <option value="3">3</option>
                       <option value="4">4</option>
                     </select></td>
-                    <td>{{product.price*product.quantity}}£</td>
-
+                    <td>{{(product.price*product.quantity).toFixed(2) | currency :'EUR'}}</td>
                      <td>
-                        <button class="btn btn-danger" (click)="removeProduct(product)" >delete</button>
+                      <i *ngIf="!addedToWishList" class='fa fa-heart-o '(click)="addItemToWishList(product)" ></i>
+                      <i *ngIf="addedToWishList" class="fa fa-heart" (click)=" removeItemFromWishList()"></i>
+                        <button class="btn" (click)="removeProduct(product)" ><i class='fa fa-trash' aria-hidden="true"></i></button>
                     </td>
                  </tr>
                  <tr>
@@ -48,9 +47,9 @@
                     <button class="btn btn-danger" (click)="removeAllProducts()" >Delete All Items</button>
                   </td>
                   <td>
-                    <button class="btn btn-primary" routerLink="/products">Add more item</button>
+                    <button class="btn btn-primary" (click)="addItems()">Add more item</button>
                   </td>
-                  <td > <strong>Total : {{totalPrice}}£</strong> </td>
+                  <td > <strong>Total : {{total | currency :'EUR'}}</strong> </td>
                  </tr>
                </tbody>
             </table>
