@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
+import IProduct from 'src/app/shared/models/product.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthStorageService {
   token !:string;
+  products :IProduct[] =[];
   constructor() { }
 
   isLoggedin ()  {
@@ -28,5 +30,34 @@ export class AuthStorageService {
 
   getRole () {
     return  localStorage.getItem('role')
+  }
+
+  productsAddToLocal(product :IProduct){
+    let cartData :IProduct[] =[];
+    let cartItems = localStorage.getItem('cartItems');
+    if(!cartItems){
+      localStorage.setItem('cartItems',JSON.stringify([product]))
+    }else{
+      cartData = JSON.parse(cartItems)
+      cartData.push(product)
+      localStorage.setItem('cartItems',JSON.stringify(cartData))
+    }
+  }
+
+  removeAllProducts (){
+    localStorage.clear()
+  }
+
+  removeProduct (productId:number){
+    let cartDate = localStorage.getItem('cartItems');
+    if(cartDate){
+      this.products = JSON.parse(cartDate);
+      this.products =this. products.filter(prduct =>prduct.id != productId)
+      localStorage.setItem('cartItems',JSON.stringify(this.products))
+    }
+  }
+
+  getProducts():number{
+    return this.products.length
   }
 }
