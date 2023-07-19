@@ -1,20 +1,22 @@
 
 .outer {
-    height: 100vh;
+    height: auto;
 }
 
 .panel{
-    border: 1px solid #f582e5;
+    border: 1px solid #293A54;
+    background-color: white;
+
 }
  
 .panel-heading {
     text-align: center;
     margin-bottom: 10px;
-    color:#f582e5 ;
+    
 }
 
 .fa{
-    color: #f582e5;
+    color: #C15AFF;
 }
 
 #forgot {
@@ -27,7 +29,7 @@
 .btn {
     margin-top: 20px;
     border-radius: 15px;
-    background-color: #f582e5;
+    background-color: #C15AFF;
     color: beige;
 }
 
@@ -62,7 +64,7 @@ input[type='password'] {
 }
  a{
     text-decoration: none;
-    color: #f582e5;
+    color: #C15AFF;
 
  }
 
