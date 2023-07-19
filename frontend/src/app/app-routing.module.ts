@@ -10,14 +10,13 @@ import { WishlistComponent } from './shared/components/wishlist/wishlist.compone
 
 
 const routes: Routes = [
-  {path : '',pathMatch : 'full',redirectTo :'login' },
+  {path : '',pathMatch : 'full',component :LoginComponent  },
   {path : 'home',component:HomeComponent},
   {path : 'login', component : LoginComponent},
   {path : 'signup', component : SignupComponent},
-  {path :'cart' , component : CartComponent,
-    canActivate : [AuthGuard]},
-  {path :'wishlist', component :WishlistComponent},
-  {path :'products', loadChildren : () =>import('./modules/products/products.module').then (m =>m.ProductsModule)},
+  {path :'cart' , component : CartComponent},
+  {path :'wishlist', component :WishlistComponent, canActivate : [AuthGuard]},
+  {path :'products', canActivate : [AuthGuard], loadChildren : () =>import('./modules/products/products.module').then (m =>m.ProductsModule)},
   { path: 'admin',canActivate : [AdminAuthGuard], loadChildren: () => import('./modules/admin/admin.module').then(m => m.AdminModule) }  
   
 ];
