@@ -3,7 +3,7 @@
 }
 
 .panel{
-    border: 1px solid #f582e5;
+    border: 1px solid #293A54;
     min-height: 380px;
     box-shadow: 20px 20px 80px rgb(218, 218, 218);
     border-radius: 12px;
@@ -13,7 +13,7 @@
 .panel-heading {
     text-align: center;
     margin-bottom: 10px;
-    color: #f582e5;
+    color: #293A54;
     
 }
 
@@ -27,13 +27,13 @@
 .btn {
     margin-top: 20px;
     border-radius: 15px;
-    background-color: #f582e5;
+    background-color: #C15AFF;
     color: beige;
 }
 
 
 .fa{
-    color: #f582e5;
+    color: #C15AFF;
 }
 
 .input-field {
@@ -61,6 +61,6 @@ input[type='password'] {
 
 a{
     text-decoration: none;
-    color: #f582e5;
+    color: #C15AFF;
     
  }
