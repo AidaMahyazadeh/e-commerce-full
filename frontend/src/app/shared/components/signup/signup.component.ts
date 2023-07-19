@@ -18,6 +18,7 @@ export class SignupComponent implements OnInit{
   eyeIcon = 'fa-eye-slash'; 
   //Minimum eight and maximum 10 characters, at least one uppercase letter, one lowercase letter, one number and one special character.
   passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,10}$/;
+  emailPattern =/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
 
 constructor(
   private auth : AuthenticationService,
@@ -30,7 +31,7 @@ ngOnInit(): void {
     firstname : new FormControl ('',Validators.required),
     lastname : new FormControl ('',Validators.required),
     username : new FormControl ('', Validators.required),
-    email : new FormControl ('',[Validators.required,Validators.email]),
+    email : new FormControl ('',[Validators.required,Validators.email,Validators.pattern(this.emailPattern)]),
     password : new FormControl ('',[Validators.required,Validators.pattern(this.passwordPattern)])
   })
 }
