@@ -23,9 +23,9 @@ export class CartService {
      this.productList$.next(this.itemList)
     }
     
-    removeItem (product :IProduct) {
+    removeItem (id :number) {
      this.itemList.map((item,index) => {
-      if(product.id === item.id){
+      if(id === item.id){
        this.itemList.splice(index,1)
       }
       this.productList$.next(this.itemList)
