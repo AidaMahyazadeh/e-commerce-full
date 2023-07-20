@@ -32,6 +32,11 @@ export class AuthStorageService {
     return  localStorage.getItem('role')
   }
 
+  storeProduct(prduct :IProduct){
+    localStorage.setItem('cartItems',JSON.stringify([prduct]))
+  }
+
+
   productsAddToLocal(product :IProduct){
     let cartData :IProduct[] =[];
     let cartItems = localStorage.getItem('cartItems');
@@ -56,8 +61,11 @@ export class AuthStorageService {
       localStorage.setItem('cartItems',JSON.stringify(this.products))
     }
   }
-
-  getProducts():number{
-    return this.products.length
+  
+  cartNumber(){
+    let cartDate = localStorage.getItem('cartItems')
+    let cartNumber = cartDate?.length
+    return cartNumber
   }
+
 }
