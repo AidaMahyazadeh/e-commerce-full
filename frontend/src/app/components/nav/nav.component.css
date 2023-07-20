@@ -1,8 +1,9 @@
 header{
    position: relative;
-   background-color:#d573de;
+   /* background-color:#5212FF ; */
+   background: linear-gradient(to right,#293A54 10%,#C15AFF 40%);
    padding: 0;
-   border-bottom: 1px solid #d95dd1;
+   border-bottom: 1px solid none;
 }
 
 img{
