@@ -19,7 +19,7 @@ export class NavComponent implements OnInit{
     private authStorage :AuthStorageService ,
     private router :Router,
     private cart :CartService,
-    private modalService :NgbModal
+    private modalService :NgbModal,
     ){}
 
     ngOnInit(): void {
