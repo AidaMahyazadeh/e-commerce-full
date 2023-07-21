@@ -20,19 +20,21 @@ constructor(
   ){}
 
   ngOnInit(): void {
-    // this.whishListService.getProducts().subscribe(res =>{
-    //   this.whishListProducts=res
-    // }
-    // )
-  this.cartService.getProducts().subscribe( res =>{
-    this.whishListProducts =res
-  })
+    this.whishListService.getProducts().subscribe(res =>{
+      this.whishListProducts=res
+    }
+    )
+  // this.cartService.getProducts().subscribe( res =>{
+  //   this.whishListProducts =res
+  // })
   }
   removeProduct(id:number){ 
    this.whishListService.removeFromWishList(id)
+   
   }
 
   removeAllProducts(){
+   this.whishListProducts =[]
    this.whishListService.clearWishList()
   }
 
