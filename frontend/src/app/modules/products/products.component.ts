@@ -27,8 +27,6 @@ export class ProductsComponent  {
   private localeStorage :AuthStorageService
   ){}
  
-   
-
    onShowSelectedCategory(newCategory:string){ 
     this.selectedCategory=newCategory
     this.router.navigate ([`products/${this.selectedCategory}`])
