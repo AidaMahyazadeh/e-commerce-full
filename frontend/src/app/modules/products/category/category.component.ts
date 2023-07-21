@@ -1,6 +1,7 @@
 import { Component,OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { AuthStorageService } from 'src/app/core/services/auth-storage.service';
 import { CartService } from 'src/app/core/services/cart.service';
 import { ProductsService } from 'src/app/core/services/products.service';
 import IProduct from 'src/app/shared/models/product.model';
@@ -20,23 +21,24 @@ export class CategoryComponent implements OnInit{
   private productService :ProductsService,
   private activatedRout :ActivatedRoute,
   private cart :CartService,
-  private router:Router
+  private router:Router,
+  private localeStorage :AuthStorageService
   ) {}
   
   ngOnInit(): void {
     this.activatedRout.params.subscribe(params =>{
-     this.categorySelected= params['category']
-      this.ProductsBycategory$= this.productService.getProductsByCategory(this. categorySelected)
+    this.categorySelected= params['category']
+    this.ProductsBycategory$= this.productService.getProductsByCategory(this. categorySelected)
     }
     )
-  
   }
   
   addItemToCart(product :IProduct) {
     this.cart.addItems(product)
+    this.localeStorage.productsAddToLocal(product)
     }
  
-   goBack (){
+   goBackToProducts (){
     this.router.navigate(['products'])
    }
 
