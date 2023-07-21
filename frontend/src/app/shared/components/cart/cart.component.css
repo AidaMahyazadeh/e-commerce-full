@@ -5,12 +5,18 @@
 
 h4,h6 {
     font-weight: small;
+    color: #3A66DC;
 }
 
 center .btn{
     font-size: small;
     border-radius: 3px;
     font-weight: 300;
+}
+
+.btn{
+    background-color: #C15AFF;
+    color: beige;
 }
 
 
@@ -27,10 +33,17 @@ img{
  .fa-trash {
    color: red;
 }
+
 .fa-heart{
     color: red;
 }
+
 .fa-heart-o {
     color :red;
     cursor: pointer;
+}
+
+.fa-shopping-bag{
+    color: #3A66DC;
+
 }
