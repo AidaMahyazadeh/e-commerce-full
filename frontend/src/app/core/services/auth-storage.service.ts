@@ -15,7 +15,7 @@ export class AuthStorageService {
     return (!!localStorage.getItem ('token'))
  }
   logout () {
-   return localStorage.clear ()
+   return localStorage.removeItem('token')
   }
 
   storeToken (tokenValue : string){
@@ -73,7 +73,6 @@ export class AuthStorageService {
     }
   }
 
-  
   // cartNumber(): number{
   // //console.log(this.cartData.length)
   // return this.cartData.length
@@ -82,6 +81,8 @@ export class AuthStorageService {
   storeFavoraiteProduct(product :IProduct){
     localStorage.setItem('favoraiteItems',JSON.stringify([product]))
   }
+
+
 
   clearFavoraiteItem(productId :number){
     let favoraiteItems = localStorage.getItem('favoraiteItems');
