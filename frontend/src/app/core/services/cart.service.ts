@@ -13,8 +13,6 @@ export class CartService {
   productsPrice !:number;
   allProducts :IProduct[]=[];
   
- 
-
   constructor(private localStorage :AuthStorageService) { }
 
   getProducts () {
@@ -26,18 +24,18 @@ export class CartService {
      this.productList$.next(this.itemList)
     }
 
-
-    addProductsById(productId :number){
-      return this.getProducts().pipe(
-        map(products=>products.filter(product =>{
-          product.id ==productId
-          this.itemList.push(product)
-          this.localStorage.productsAddToLocal(product)
-          this.productList$.next(this.itemList)
-        }
-          ))
-      )
-    }
+    
+    // addProductsById(productId :number){
+    //   return this.getProducts().pipe(
+    //     map(products=>products.filter(product =>{
+    //       product.id ==productId
+    //       this.itemList.push(product)
+    //       this.localStorage.productsAddToLocal(product)
+    //       this.productList$.next(this.itemList)
+    //     }
+    //       ))
+    //   )
+    // }
    
     
     removeItem (id :number) {
@@ -46,6 +44,7 @@ export class CartService {
        this.itemList.splice(index,1)
       }
       this.productList$.next(this.itemList)
+      this.localStorage.removeProduct(id)
      })
     }
  
