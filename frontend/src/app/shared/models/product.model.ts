@@ -5,4 +5,5 @@ export default interface IProduct {
     price : number;
     quantity : number ;
     category :string;
+    favoraite :boolean;
 }
