@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, map } from 'rxjs';
 import IProduct from 'src/app/shared/models/product.model';
+import { AuthStorageService } from './auth-storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,9 +11,11 @@ export class CartService {
   itemList :IProduct[] =[];
   productList$ = new BehaviorSubject<IProduct []>([]);
   productsPrice !:number;
-  totalPrice$ = new BehaviorSubject<number>(0);
+  allProducts :IProduct[]=[];
+  
+ 
 
-  constructor() { }
+  constructor(private localStorage :AuthStorageService) { }
 
   getProducts () {
     return this.productList$.asObservable()
@@ -22,6 +25,20 @@ export class CartService {
      this.itemList.push(product)
      this.productList$.next(this.itemList)
     }
+
+
+    addProductsById(productId :number){
+      return this.getProducts().pipe(
+        map(products=>products.filter(product =>{
+          product.id ==productId
+          this.itemList.push(product)
+          this.localStorage.productsAddToLocal(product)
+          this.productList$.next(this.itemList)
+        }
+          ))
+      )
+    }
+   
     
     removeItem (id :number) {
      this.itemList.map((item,index) => {
@@ -34,6 +51,7 @@ export class CartService {
  
     removeAllCartItem (){
      this.itemList =[]
+     this.localStorage.removeAllProducts()
      this.productList$.next(this.itemList)
     }
 
