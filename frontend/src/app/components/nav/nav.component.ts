@@ -28,7 +28,6 @@ export class NavComponent implements OnInit{
       this.cart.getProducts().subscribe(
         res=>this.cartItems = res.length
       )
-
     } 
 
   
