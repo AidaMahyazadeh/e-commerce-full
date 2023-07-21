@@ -4,10 +4,13 @@ img {
 
 .shopping{
   text-decoration: none;
-  color: blueviolet;
+ 
+}
+
+a:hover{
+  text-transform: uppercase;
 }
 
 h4{
   text-align: center;
-  
 }
