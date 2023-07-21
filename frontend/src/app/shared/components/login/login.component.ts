@@ -46,7 +46,7 @@ onLogin () {
   if (this.loginForm.valid){  
   this.auth.login(this.loginForm.value).subscribe( {
     next :(res) =>{
-       console.log(res)
+     //  console.log(res)
     this.authStorage.storeToken (res.token)
     this.authStorage.storeRole(res.user.role)
     res.user.role ==='admin' ?  this.router.navigate (['admin']) : this.router.navigate (['home'])
