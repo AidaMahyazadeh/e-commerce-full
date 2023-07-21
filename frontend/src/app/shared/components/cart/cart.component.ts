@@ -35,11 +35,10 @@ export class CartComponent implements OnInit {
  getTotal(){
   this.cart.getProducts().subscribe(res =>{
     this.products=res;
-  this.total =  this.products.reduce((acc,product)=>{
+    this.total =  this.products.reduce((acc,product)=>{
      return acc + (product.price*product.quantity)
     },0)
   })
-  
  }
 
  removeProduct(product:IProduct){
@@ -79,7 +78,6 @@ export class CartComponent implements OnInit {
  for(let product of this.products){
   if(product.id ==id){
     product.quantity==quantity 
-  this.localeStorage.storeProduct(product)
   }
  }
  }
