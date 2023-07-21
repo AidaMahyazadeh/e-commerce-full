@@ -14,7 +14,9 @@ import { CartComponent } from 'src/app/shared/components/cart/cart.component';
 })
 export class NavComponent implements OnInit{
   crownIcon = './assets/icons/crown.svg';
-  cartItems !:number;
+   cartItems !:number;
+  
+   
   constructor (
     private authStorage :AuthStorageService ,
     private router :Router,
@@ -26,8 +28,10 @@ export class NavComponent implements OnInit{
       this.cart.getProducts().subscribe(
         res=>this.cartItems = res.length
       )
-    }
 
+    } 
+
+  
     isLoggedin (){
       return this.authStorage.isLoggedin()
     }
@@ -35,6 +39,7 @@ export class NavComponent implements OnInit{
     logout () {
       this.authStorage.logout ();
       this.cart.removeAllCartItem();
+      this.authStorage.removeAllProducts();
       this.router.navigate (['']);
     }
 
