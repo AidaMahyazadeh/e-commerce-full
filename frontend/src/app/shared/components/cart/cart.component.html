@@ -6,7 +6,7 @@
             <h4>Your cart is empty.</h4>
           </div>
             <h6>Add item to it now</h6>
-            <button routerLink="/products" class="btn btn-primary" (click)="close()">Shop Now</button>
+            <button routerLink="/products" class="btn" (click)="close()">Shop Now</button>
         </div>
     </div>
 </ng-container>
@@ -29,17 +29,22 @@
                     <td>{{product.title}}</td>
                     <td><img src="{{product.imageUrl}}" alt="{{product.title}}"></td>
                     <td>{{product.price | currency :'EUR'}}</td>
-                    <td><select [(ngModel)]="product.quantity" (click)="changeQuantity()">
+                    <td><select [(ngModel)]="product.quantity" (click)="changeQuantity(product.id,product.quantity)">
                       <option value="1" >1</option>
                       <option value="2">2</option>
                       <option value="3">3</option>
                       <option value="4">4</option>
                     </select></td>
                     <td>{{(product.price*product.quantity).toFixed(2) | currency :'EUR'}}</td>
-                     <td>
-                      <i *ngIf="!addedToWishList" class='fa fa-heart-o '(click)="addItemToWishList(product)" ></i>
-                      <i *ngIf="addedToWishList" class="fa fa-heart" (click)=" removeItemFromWishList()"></i>
-                        <button class="btn" (click)="removeProduct(product)" ><i class='fa fa-trash' aria-hidden="true"></i></button>
+                    <td>
+                      <i  *ngIf="!product.favoraite"  class='fa fa-heart-o ' aria-hidden="true" (click)="addItemToWishList(product)" ></i> 
+                    </td>
+                    <td>
+                      <i *ngIf="product.favoraite" class="fa fa-heart" (click)=" 
+                      removeItemFromWishList(product)"></i> 
+                    </td>
+                      <td>
+                        <i class='fa fa-trash' aria-hidden="true" (click)="removeProduct(product)" ></i>
                     </td>
                  </tr>
                  <tr>
