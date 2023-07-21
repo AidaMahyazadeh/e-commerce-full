@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, map } from 'rxjs';
+import { BehaviorSubject} from 'rxjs';
 import IProduct from 'src/app/shared/models/product.model';
 import { AuthStorageService } from './auth-storage.service';
-import { CartService } from './cart.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,8 +12,7 @@ wishListSubject$ = new BehaviorSubject<IProduct[]>([]) ;
 products :IProduct[]=[];
 
   constructor(
-    private authStorage : AuthStorageService,
-    private cartService :CartService
+    private authStorage : AuthStorageService
     ) { }
 
 getProducts (){
@@ -22,7 +20,6 @@ getProducts (){
 }
 
   addToWishList (product :IProduct){
-  product.favoraite=true 
   this.favoraiteProducts.push(product)
   this.wishListSubject$.next(this.favoraiteProducts)
   }
@@ -41,12 +38,16 @@ getProducts (){
   // }
 
  removeFromWishList(productId:number){
- this.cartService.removeItem(productId)
- this.authStorage.clearFavoraiteItem(productId )
+  this.favoraiteProducts.map((item,index) => {
+    if(productId === item.id){
+     this.favoraiteProducts.splice(index,1)
+    }
+    this.wishListSubject$.next(this.favoraiteProducts)
+    this.authStorage.clearFavoraiteItem(productId)
+   })
  }
 
  clearWishList(){
-  this.cartService.removeAllCartItem()
   this.authStorage.clearAllFavoraiteItems()
  }
 
