@@ -15,7 +15,7 @@ export class AuthStorageService {
     return (!!localStorage.getItem ('token'))
  }
   logout () {
-   return localStorage.removeItem('token')
+   return localStorage.clear()
   }
 
   storeToken (tokenValue : string){
