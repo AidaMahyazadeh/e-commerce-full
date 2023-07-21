@@ -1,4 +1,4 @@
-h4,h5{
+h4{
   color: blueviolet;
   align-items: center;
 }
@@ -26,7 +26,7 @@ center .btn{
 }
 
 
-img{
+.image{
   width: 120px;
 }
 
@@ -46,3 +46,14 @@ a{
   cursor: pointer;
 }
 
+a:hover{
+  font-size: xx-large;
+  text-transform:uppercase;
+}
+
+ .screen-image{
+  margin-top: 80px;
+ }
+ .fa {
+   color: red;
+ }

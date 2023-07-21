@@ -1,4 +1,4 @@
-<ng-container *ngIf="products.length==0" >
+<ng-container *ngIf="whishListProducts.length==0" >
     <div class="custom-class">
         <div class="center">
           <div>
@@ -7,8 +7,9 @@
           </div>
         </div>
     </div>
+    <img class="screen-image" src="../../../../assets/images/blog-1.jpg" alt="">
 </ng-container>
-<ng-container *ngIf="products.length!=0">
+<ng-container *ngIf="whishListProducts.length!=0">
   <div class="custom-class">
     <div class="card">
         <div class="product">
@@ -18,17 +19,15 @@
                     <th>Product name</th>
                     <th>Product Image</th>
                     <th>Price</th>
-                    <th>Total Price</th>
                  </tr>
                </thead>
                <tbody>
-                 <tr *ngFor="let product of products ">
+                 <tr *ngFor="let product of whishListProducts ">
                     <td>{{product.title}}</td>
-                    <td><img src="{{product.imageUrl}}" alt="{{product.title}}"></td>
+                    <td><img class="image" src="{{product.imageUrl}}" alt="{{product.title}}"></td>
                     <td>{{product.price | currency :'EUR'}}</td>
                      <td>
-                      <i (click)="removeProduct(product)"  class='fa fa-heart '></i>
-                        
+                      <i (click)="removeProduct(product.id)"  class='fa fa-heart '></i>   
                     </td>
                  </tr>
                  <tr>
