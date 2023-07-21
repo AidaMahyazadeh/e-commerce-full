@@ -39,6 +39,8 @@ export class ProductsComponent  {
       this.cart.addItems(product)
       this.localeStorage.productsAddToLocal(product)
       }
+ 
+    
 }
 
 
