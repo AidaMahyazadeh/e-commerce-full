@@ -6,7 +6,9 @@ import IProduct from 'src/app/shared/models/product.model';
 })
 export class AuthStorageService {
   token !:string;
+  product :IProduct []=[]
   products :IProduct[] =[];
+  cartData :IProduct[] =[];
   constructor() { }
 
   isLoggedin ()  {
@@ -32,25 +34,34 @@ export class AuthStorageService {
     return  localStorage.getItem('role')
   }
 
-  storeProduct(prduct :IProduct){
-    localStorage.setItem('cartItems',JSON.stringify([prduct]))
+  storeProduct(product :IProduct){
+    this.product.push(product)
+    localStorage.setItem('cartItems',JSON.stringify(this.product))
+  }
+  
+  getProduct(){
+    return localStorage.getItem ('cartItems')
   }
 
-
   productsAddToLocal(product :IProduct){
-    let cartData :IProduct[] =[];
+    //let cartData :IProduct[] =[];
+    this.product.push(product)
     let cartItems = localStorage.getItem('cartItems');
     if(!cartItems){
-      localStorage.setItem('cartItems',JSON.stringify([product]))
+      localStorage.setItem('cartItems',JSON.stringify(this.product))
     }else{
-      cartData = JSON.parse(cartItems)
-      cartData.push(product)
-      localStorage.setItem('cartItems',JSON.stringify(cartData))
-    }
+     this.cartData = JSON.parse(cartItems)
+      this.cartData.push(product)
+      localStorage.setItem('cartItems',JSON.stringify(this.cartData))
+    } 
+  }
+
+  getAllProducts ():IProduct[]{
+    return this.cartData
   }
 
   removeAllProducts (){
-    localStorage.clear()
+    localStorage.removeItem('cartItems')
   }
 
   removeProduct (productId:number){
@@ -61,11 +72,29 @@ export class AuthStorageService {
       localStorage.setItem('cartItems',JSON.stringify(this.products))
     }
   }
+
   
-  cartNumber(){
-    let cartDate = localStorage.getItem('cartItems')
-    let cartNumber = cartDate?.length
-    return cartNumber
+  // cartNumber(): number{
+  // //console.log(this.cartData.length)
+  // return this.cartData.length
+  // }
+
+  storeFavoraiteProduct(product :IProduct){
+    localStorage.setItem('favoraiteItems',JSON.stringify([product]))
+  }
+
+  clearFavoraiteItem(productId :number){
+    let favoraiteItems = localStorage.getItem('favoraiteItems');
+    let favoraiteProduct :IProduct[];
+    if(favoraiteItems){
+      favoraiteProduct = JSON.parse(favoraiteItems);
+      favoraiteProduct=favoraiteProduct.filter(product =>product.id != productId)
+      localStorage.setItem('favoraiteItems',JSON.stringify(favoraiteProduct))
+    }
+  }
+
+  clearAllFavoraiteItems(){
+    localStorage.removeItem('favoraiteItems')
   }
 
 }
