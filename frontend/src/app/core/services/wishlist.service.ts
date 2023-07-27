@@ -24,23 +24,11 @@ getProducts (){
   this.wishListSubject$.next(this.favoraiteProducts)
   }
 
-  // addToWishListById(productId:number){
-  // return this.cartService.productList$.pipe(
-  //   map (items =>items.filter(item =>{
-  //     item.id == productId
-  //     this.favoraiteProducts.push(item)
-  //    this.wishListSubject$.next(this.favoraiteProducts)
-  //    this.authStorage.storeFavoraiteProduct(item)
-  //    item.favoraite =true
-  //   }
-  //     ))
-  // )
-  // }
-
  removeFromWishList(productId:number){
   this.favoraiteProducts.map((item,index) => {
     if(productId === item.id){
      this.favoraiteProducts.splice(index,1)
+     item.favoraite =false
     }
     this.wishListSubject$.next(this.favoraiteProducts)
     this.authStorage.clearFavoraiteItem(productId)
