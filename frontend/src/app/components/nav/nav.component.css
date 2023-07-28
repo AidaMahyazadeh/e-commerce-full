@@ -40,3 +40,7 @@ ul a{
     color: beige;
     margin-top: 18px;
 }
+
+li {
+    margin-left: 30px;
+}
