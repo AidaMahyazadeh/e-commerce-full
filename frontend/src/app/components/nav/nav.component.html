@@ -5,9 +5,6 @@
         </a>
         <ul>
             <li>
-                <a *ngIf="!isLoggedin()" routerLink="/login">Login</a>
-            </li>
-            <li>
                 <a *ngIf="isLoggedin()" routerLink="/logout" (click)="logout ()">Logout</a>
             </li>
             <li>
@@ -19,7 +16,7 @@
                 <span class='fa fa-heart' routerLink="/wishlist"></span>
             </li>
             <li>
-                <a class="cart" data-toggle="modal" (click)="open()">cart
+                <a *ngIf="isLoggedin()" class="cart" data-toggle="modal" (click)="open()">cart
                     <span class="fa fa-cart-plus"></span>
                     <span *ngIf="cartItems> 0" class="badge bg-danger">{{cartItems}}</span>
                 </a>
