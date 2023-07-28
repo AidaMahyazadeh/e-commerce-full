@@ -37,8 +37,6 @@ export class NavComponent implements OnInit{
    
     logout () {
       this.authStorage.logout ();
-      this.cart.removeAllCartItem();
-      this.authStorage.removeAllProducts();
       this.router.navigate (['']);
     }
 
