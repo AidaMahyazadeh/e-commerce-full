@@ -23,12 +23,10 @@ export class ProductsService {
     )
    }
 
-
    getProductsByCategory(category :string):Observable <IProduct[]>{
     return this.getAllProducts().pipe(
       map(products=> products.filter(product =>product.category==category))
     )
-  
    }
 }
 
