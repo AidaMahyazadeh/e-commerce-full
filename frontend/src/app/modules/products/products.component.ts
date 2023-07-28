@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { AuthStorageService } from 'src/app/core/services/auth-storage.service';
 import { CartService } from 'src/app/core/services/cart.service';
 import { ProductsService } from 'src/app/core/services/products.service';
 import IProduct from 'src/app/shared/models/product.model';
@@ -23,8 +22,7 @@ export class ProductsComponent  {
  constructor (
   private productsService :ProductsService,
   private cart :CartService,
-  private router :Router,
-  private localeStorage :AuthStorageService
+  private router :Router
   ){}
  
    onShowSelectedCategory(newCategory:string){ 
@@ -35,10 +33,8 @@ export class ProductsComponent  {
 
     addItemToCart(product :IProduct) {
       this.cart.addItems(product)
-      this.localeStorage.productsAddToLocal(product)
       }
- 
-    
+  
 }
 
 
