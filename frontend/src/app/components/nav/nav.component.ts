@@ -14,7 +14,7 @@ import { CartComponent } from 'src/app/shared/components/cart/cart.component';
 })
 export class NavComponent implements OnInit{
   crownIcon = './assets/icons/crown.svg';
-   cartItems !:number;
+  cartItems !:number;
   
    
   constructor (
@@ -24,7 +24,7 @@ export class NavComponent implements OnInit{
     private modalService :NgbModal,
     ){}
 
-    ngOnInit(): void {
+    ngOnInit(){
       this.cart.getProducts().subscribe(
         res=>this.cartItems = res.length
       )
@@ -43,6 +43,6 @@ export class NavComponent implements OnInit{
     }
 
     open(){
-     const modalRef = this.modalService.open(CartComponent)
+     const modalRef = this.modalService.open(CartComponent, {scrollable: true})
     }
 }
