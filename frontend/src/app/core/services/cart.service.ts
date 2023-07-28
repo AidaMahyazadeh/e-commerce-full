@@ -19,25 +19,18 @@ export class CartService {
     return this.productList$.asObservable()
     }
  
-    addItems (product :IProduct){
-     this.itemList.push(product)
-     this.productList$.next(this.itemList)
-    }
+    
+      addItems (product :IProduct){
+        if(!this.localStorage.productExisted(product)){
+         this.itemList.push(product)
+         this.localStorage.productsAddToLocal(product)
+         this.productList$.next(this.itemList)
+        } else{
+          product.quantity ++
+        }
+       }
+    
 
-    
-    // addProductsById(productId :number){
-    //   return this.getProducts().pipe(
-    //     map(products=>products.filter(product =>{
-    //       product.id ==productId
-    //       this.itemList.push(product)
-    //       this.localStorage.productsAddToLocal(product)
-    //       this.productList$.next(this.itemList)
-    //     }
-    //       ))
-    //   )
-    // }
-   
-    
     removeItem (id :number) {
      this.itemList.map((item,index) => {
       if(id === item.id){
