@@ -2,11 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgToastService } from 'ng-angular-popup';
-import { map } from 'rxjs';
 import { AuthStorageService } from 'src/app/core/services/auth-storage.service';
 import { AuthenticationService } from 'src/app/core/services/authentication.service';
-
-
 
 
 @Component({
