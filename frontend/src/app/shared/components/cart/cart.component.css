@@ -27,7 +27,7 @@ img{
 .custom-class{
   position: fixed;
   margin: auto;
-  
+  overflow-y: initial !important
 }
 
  .fa-trash {
@@ -46,4 +46,12 @@ img{
 .fa-shopping-bag{
     color: #3A66DC;
 
+}
+
+.modal-dialog{
+    overflow-y: initial !important
+}
+.card{
+    height: 500px;
+    overflow-y: auto;
 }
