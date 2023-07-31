@@ -1,0 +1,12 @@
+   h2 {
+        color:blueviolet ;
+    }
+    
+    span{
+    font-weight: bold;
+    margin-right: 50px;
+    }
+    
+    .row{
+        justify-content: center;
+    }

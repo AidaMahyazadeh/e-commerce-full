@@ -1,1 +1,16 @@
-<p>payment works!</p>
+
+<div class="container">
+    <h2 class="h2 mb-5 mt-3 text-center
+    ">Payment page</h2>
+    <div class="row">
+        <div class="col-lg-9">
+            <div class="d-flex justify-content-between mb-4 small">
+                <span>TOTAL</span> <strong class="text-dark">${{cartTotal}}</strong>
+              </div>
+        </div>
+        <div class="col-lg-9">
+          <hr>
+          <ngx-paypal [config]="payPalConfig"></ngx-paypal>
+        </div>
+    </div>
+ </div>
