@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { NgToastModule } from 'ng-angular-popup'
 import { AppRoutingModule } from './app-routing.module';
-
+import { NgxPayPalModule } from 'ngx-paypal';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './shared/components/home/home.component';
 import { SignupComponent } from './shared/components/signup/signup.component';
@@ -38,7 +38,8 @@ import { PaymentComponent } from './shared/components/payment/payment.component'
     NgToastModule,
     ProductsRoutingModule,
     FormsModule,
-    NgbModalModule
+    NgbModalModule,
+    NgxPayPalModule
   ],
   providers: [
     {
