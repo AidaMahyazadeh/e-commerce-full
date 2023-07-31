@@ -15,6 +15,7 @@ import { AuthInterceptor } from './core/services/auth.interceptor';
 import { NavComponent } from './components/nav/nav.component';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { WishlistComponent } from './shared/components/wishlist/wishlist.component';
+import { PaymentComponent } from './shared/components/payment/payment.component';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import { WishlistComponent } from './shared/components/wishlist/wishlist.compone
     LoginComponent,
     CartComponent,
     WishlistComponent,
+    PaymentComponent,
    
   ],
   imports: [

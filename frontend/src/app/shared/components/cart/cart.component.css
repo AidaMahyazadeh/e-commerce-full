@@ -27,7 +27,10 @@ img{
 .custom-class{
   position: fixed;
   margin: auto;
-  overflow-y: initial !important
+  right: 0%;
+  overflow-y: initial;
+  transform: translate(0%,5%);
+  width: auto;
 }
 
  .fa-trash {
@@ -55,3 +58,4 @@ img{
     height: 500px;
     overflow-y: auto;
 }
+

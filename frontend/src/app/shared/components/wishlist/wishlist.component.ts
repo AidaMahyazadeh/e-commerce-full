@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { CartService } from 'src/app/core/services/cart.service';
 import IProduct from '../../models/product.model';
 import { Router } from '@angular/router';
-import { AuthStorageService } from 'src/app/core/services/auth-storage.service';
 import { WishlistService } from 'src/app/core/services/wishlist.service';
+import { CartService } from 'src/app/core/services/cart.service';
 
 @Component({
   selector: 'app-wishlist',
@@ -14,12 +13,12 @@ export class WishlistComponent implements OnInit {
   whishListProducts !:IProduct[];
 
 constructor(
-  private cartService : CartService,
   private router :Router ,
-  private whishListService :WishlistService
+  private whishListService :WishlistService,
+  private cartService :CartService
   ){}
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.whishListService.getProducts().subscribe(res =>{
     this.whishListProducts=res
     }
@@ -38,4 +37,8 @@ constructor(
     this.router.navigate(['/products'])
   }
 
+  addToCart(product :IProduct) {
+     this.cartService.addItems(product)
+     this.whishListService.removeFromWishList(product.id)
+  }
 }

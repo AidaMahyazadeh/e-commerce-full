@@ -8,6 +8,7 @@ import { AuthStorageService } from 'src/app/core/services/auth-storage.service';
 
 
 
+
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
@@ -25,7 +26,7 @@ export class CartComponent implements OnInit {
   private activeModal :NgbActiveModal,
   private router:Router,
   private wishListService :WishlistService,
-  private localeStorage :AuthStorageService
+  private authStorage :AuthStorageService
   ){}
    
  ngOnInit(): void {
@@ -43,13 +44,11 @@ export class CartComponent implements OnInit {
 
  removeProduct(product:IProduct){
  this.cart.removeItem(product.id)
- this.localeStorage.removeProduct(product.id) 
  this.getTotal()
  }
 
  removeAllProducts (){
   this.cart.removeAllCartItem()
-  this.localeStorage.removeAllProducts()
  }
 
  close(){
@@ -64,17 +63,16 @@ export class CartComponent implements OnInit {
  addItemToWishList(product :IProduct){
   this.toggleWishList(product)
   this.wishListService.addToWishList(product)
-   this.localeStorage.storeFavoraiteProduct(product)
+  this.cart.removeItem(product.id)
  }
 
  removeItemFromWishList(product:IProduct){
- this.wishListService.removeFromWishList(product.id)
  this.toggleWishList(product)
+ this.wishListService.removeFromWishList(product.id)
  }
 
  changeQuantity(id :number,quantity:number){
  this.getTotal()
- //console.log(id,quantity)
  for(let product of this.products){
   if(product.id ==id){
     product.quantity==quantity 
@@ -85,4 +83,11 @@ export class CartComponent implements OnInit {
  toggleWishList(product :IProduct){
   product.favoraite =!product.favoraite
  }
+
+checkout(){
+  this.authStorage.storeTotal(this.total)
+  this.router.navigate(['/payment'])
+  this.close()
+}
+
 }

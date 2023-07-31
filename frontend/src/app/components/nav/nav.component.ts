@@ -41,6 +41,6 @@ export class NavComponent implements OnInit{
     }
 
     open(){
-     const modalRef = this.modalService.open(CartComponent, {scrollable: true})
+     const modalRef = this.modalService.open(CartComponent, {scrollable: true,animation :true})
     }
 }

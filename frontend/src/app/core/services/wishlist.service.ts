@@ -10,6 +10,7 @@ export class WishlistService {
 favoraiteProducts :IProduct [] =[];  
 wishListSubject$ = new BehaviorSubject<IProduct[]>([]) ;
 products :IProduct[]=[];
+lengthOfFavoraiteItems :number =0
 
   constructor(
     private authStorage : AuthStorageService
@@ -21,6 +22,7 @@ getProducts (){
 
   addToWishList (product :IProduct){
   this.favoraiteProducts.push(product)
+  this.authStorage.storeFavoraiteProduct(product)
   this.wishListSubject$.next(this.favoraiteProducts)
   }
 
@@ -29,12 +31,12 @@ getProducts (){
     if(productId === item.id){
      this.favoraiteProducts.splice(index,1)
      item.favoraite =false
-    }
+     this.authStorage.clearFavoraiteItem(productId)
     this.wishListSubject$.next(this.favoraiteProducts)
-    this.authStorage.clearFavoraiteItem(productId)
+    }
    })
  }
-
+ 
  clearWishList(){
   this.authStorage.clearAllFavoraiteItems()
  }

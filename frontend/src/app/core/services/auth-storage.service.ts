@@ -6,16 +6,18 @@ import IProduct from 'src/app/shared/models/product.model';
 })
 export class AuthStorageService {
   token !:string;
-  product :IProduct []=[]
   products :IProduct[] =[];
   cartData :IProduct[] =[];
+  favoraiteItems :IProduct[]=[];
+
   constructor() { }
 
   isLoggedin ()  {
     return (!!localStorage.getItem ('token'))
  }
   logout () {
-   return localStorage.clear()
+    localStorage.removeItem('token')
+    localStorage.removeItem('role')
   }
 
   storeToken (tokenValue : string){
@@ -34,27 +36,34 @@ export class AuthStorageService {
     return  localStorage.getItem('role')
   }
 
+  storeCartItems (){
+    localStorage.setItem('cartItems',JSON.stringify(this.products))
+  }
+
   storeProduct(product :IProduct){
-    this.product.push(product)
-    localStorage.setItem('cartItems',JSON.stringify(this.product))
+    this.products.push(product)
+    this.storeCartItems()
   }
   
   getProduct(){
-    return localStorage.getItem ('cartItems')
+   return localStorage.getItem ('cartItems')
   }
 
   productsAddToLocal(product :IProduct){
-    //let cartData :IProduct[] =[];
-    this.product.push(product)
+    this.products.push(product)
     let cartItems = localStorage.getItem('cartItems');
     if(!cartItems){
-      localStorage.setItem('cartItems',JSON.stringify(this.product))
+      localStorage.setItem('cartItems',JSON.stringify(this.products))
     }else{
      this.cartData = JSON.parse(cartItems)
       this.cartData.push(product)
       localStorage.setItem('cartItems',JSON.stringify(this.cartData))
     } 
   }
+
+  productExisted(product :IProduct):boolean{
+   return this.products.findIndex(item =>item.id ==product.id) > -1;
+  }  
 
   getAllProducts ():IProduct[]{
     return this.cartData
@@ -68,22 +77,28 @@ export class AuthStorageService {
     let cartDate = localStorage.getItem('cartItems');
     if(cartDate){
       this.products = JSON.parse(cartDate);
-      this.products =this. products.filter(prduct =>prduct.id != productId)
+      this.products =this. products.filter(product =>product.id != productId)
       localStorage.setItem('cartItems',JSON.stringify(this.products))
     }
   }
 
-  // cartNumber(): number{
-  // //console.log(this.cartData.length)
-  // return this.cartData.length
-  // }
-
-  storeFavoraiteProduct(product :IProduct){
+  storeFavoraiteproducts(product :IProduct){
+    this.favoraiteItems.push(product)
     localStorage.setItem('favoraiteItems',JSON.stringify([product]))
   }
 
+ storeFavoraiteProduct(product :IProduct){
+  let favoraiteProducts = localStorage.getItem('favoraiteItems')
+  if(!favoraiteProducts){
+    localStorage.setItem('favoraiteItems',JSON.stringify([product]))
+  }else{
+    this.favoraiteItems =JSON.parse(favoraiteProducts)
+   this.favoraiteItems.push(product)
+   localStorage.setItem('favoraiteItems',JSON.stringify(this.favoraiteItems))
+  }
+  }
 
-
+ 
   clearFavoraiteItem(productId :number){
     let favoraiteItems = localStorage.getItem('favoraiteItems');
     let favoraiteProduct :IProduct[];
@@ -96,6 +111,14 @@ export class AuthStorageService {
 
   clearAllFavoraiteItems(){
     localStorage.removeItem('favoraiteItems')
+  }
+
+  storeTotal(total :number){
+    localStorage.setItem('cartTotal',JSON.stringify(total.toFixed(2)))
+  }
+
+  getTotal() :number{
+  return JSON.parse(localStorage.getItem('cartTotal') !)
   }
 
 }

@@ -35,7 +35,6 @@ export class CategoryComponent implements OnInit{
   
   addItemToCart(product :IProduct) {
     this.cart.addItems(product)
-    this.localeStorage.productsAddToLocal(product)
     }
  
    goBackToProducts (){

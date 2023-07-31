@@ -29,13 +29,16 @@
                      <td>
                       <i (click)="removeProduct(product.id)"  class='fa fa-heart '></i>   
                     </td>
+                    <td>
+                      <span class="fa fa-cart-plus" (click)="addToCart(product)"></span>
+                    </td>
                  </tr>
                  <tr>
                   <td>
-                    <button class="btn btn-danger" (click)="removeAllProducts()" >Delete All Items</button>
+                    <button class="btn" (click)="removeAllProducts()" >Delete All Items</button>
                   </td>
                   <td>
-                    <button class="btn btn-primary" (click)="addItem()">Go back to shopping page</button>
+                    <button class="btn" (click)="addItem()">Go back to shopping page</button>
                   </td>
                  </tr>
                </tbody>
