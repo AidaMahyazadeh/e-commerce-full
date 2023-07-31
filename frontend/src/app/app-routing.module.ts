@@ -14,7 +14,6 @@ const routes: Routes = [
   {path : 'home',component:HomeComponent ,canActivate :[AuthGuard]},
   {path : 'login', component : LoginComponent},
   {path : 'signup', component : SignupComponent},
-  // {path :'cart' , component : CartComponent,canActivate :[AuthGuard]},
   {path :'wishlist', component :WishlistComponent,canActivate :[AuthGuard]},
   {path :'payment',component :PaymentComponent,canActivate :[AuthGuard]},
   {path :'products',loadChildren : () =>import('./modules/products/products.module').then (m =>m.ProductsModule)},
