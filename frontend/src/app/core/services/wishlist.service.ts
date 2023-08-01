@@ -23,9 +23,12 @@ getProducts (){
 }
 
   addToWishList (product :IProduct){
-  this.favoraiteProducts.push(product)
-  this.authStorage.storeFavoraiteProduct(product)
-  this.wishListSubject$.next(this.favoraiteProducts)
+    if (!this.authStorage.favoariteProductExisted(product)){
+      //this.favoraiteProducts.push(product)
+      this.authStorage.storeFavoraiteProduct(product)
+      this.wishListSubject$.next(this.favoraiteProducts)
+    }
+ 
   }
 
  removeFromWishList(productId:number){
