@@ -34,10 +34,9 @@ export class NavComponent implements OnInit{
       this.wishlistService.getProducts().subscribe(
         res => this.favoraiteItems = res.length
       )
-     
     } 
 
-  
+
     isLoggedin (){
       return this.authStorage.isLoggedin()
     }
