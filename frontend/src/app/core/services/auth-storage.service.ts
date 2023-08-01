@@ -98,6 +98,10 @@ export class AuthStorageService {
   }
   }
 
+ 
+  favoariteProductExisted (product :IProduct) :boolean{
+    return this.favoraiteItems.findIndex( item =>item.id ==product.id) > -1
+  }
 
   getFavoraiteProducts ():IProduct[]{
    return JSON.parse(localStorage.getItem('favoraiteItems')!)
