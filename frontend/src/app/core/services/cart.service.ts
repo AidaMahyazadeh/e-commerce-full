@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, map } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import IProduct from 'src/app/shared/models/product.model';
 import { AuthStorageService } from './auth-storage.service';
 
@@ -16,6 +16,8 @@ export class CartService {
   constructor(private localStorage :AuthStorageService) { }
 
   getProducts () {
+    this.itemList= this.localStorage.getProduct()
+    this.productList$.next(this.itemList)
     return this.productList$.asObservable()
     }
 

@@ -24,9 +24,8 @@ getProducts (){
 
   addToWishList (product :IProduct){
     if (!this.authStorage.favoariteProductExisted(product)){
-      //this.favoraiteProducts.push(product)
       this.authStorage.storeFavoraiteProduct(product)
-      this.wishListSubject$.next(this.favoraiteProducts)
+       this.wishListSubject$.next(this.favoraiteProducts)
     }
  
   }
