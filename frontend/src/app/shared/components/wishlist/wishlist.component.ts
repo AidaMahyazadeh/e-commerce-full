@@ -24,6 +24,7 @@ constructor(
     }
     )
   }
+  
   removeProduct(id:number){ 
    this.whishListService.removeFromWishList(id) 
   }
@@ -38,6 +39,7 @@ constructor(
   }
 
   addToCart(product :IProduct) {
+     product.favoraite =false
      this.cartService.addItems(product)
      this.whishListService.removeFromWishList(product.id)
   }
