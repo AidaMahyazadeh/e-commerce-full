@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import { AuthStorageService } from 'src/app/core/services/auth-storage.service';
 import { CartService } from 'src/app/core/services/cart.service';
 import { WishlistService } from 'src/app/core/services/wishlist.service';
@@ -34,6 +34,7 @@ export class NavComponent implements OnInit{
       this.wishlistService.getProducts().subscribe(
         res => this.favoraiteItems = res.length
       )
+     
     } 
 
   
