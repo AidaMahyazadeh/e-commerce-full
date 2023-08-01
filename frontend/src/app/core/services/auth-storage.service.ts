@@ -36,28 +36,28 @@ export class AuthStorageService {
     return  localStorage.getItem('role')
   }
 
-  storeCartItems (){
+  storeCartItems (products :IProduct[]){
     localStorage.setItem('cartItems',JSON.stringify(this.products))
   }
 
   storeProduct(product :IProduct){
     this.products.push(product)
-    this.storeCartItems()
+    this.storeCartItems(this.products)
   }
   
-  getProduct(){
-   return localStorage.getItem ('cartItems')
+  getProduct():IProduct[]{
+   return JSON.parse(localStorage.getItem ('cartItems')!)
   }
 
   productsAddToLocal(product :IProduct){
     this.products.push(product)
-    let cartItems = localStorage.getItem('cartItems');
-    if(!cartItems){
-      localStorage.setItem('cartItems',JSON.stringify(this.products))
+    let cartItem = this.getProduct()
+    if (!cartItem){
+      this.storeCartItems(this.products)
     }else{
-     this.cartData = JSON.parse(cartItems)
+      this.cartData =cartItem
       this.cartData.push(product)
-      localStorage.setItem('cartItems',JSON.stringify(this.cartData))
+      this.storeCartItems(this.cartData)
     } 
   }
 
@@ -92,10 +92,15 @@ export class AuthStorageService {
   if(!favoraiteProducts){
     localStorage.setItem('favoraiteItems',JSON.stringify([product]))
   }else{
-    this.favoraiteItems =JSON.parse(favoraiteProducts)
+   this.favoraiteItems =JSON.parse(favoraiteProducts)
    this.favoraiteItems.push(product)
    localStorage.setItem('favoraiteItems',JSON.stringify(this.favoraiteItems))
   }
+  }
+
+
+  getFavoraiteProducts ():IProduct[]{
+   return JSON.parse(localStorage.getItem('favoraiteItems')!)
   }
 
  
@@ -119,6 +124,10 @@ export class AuthStorageService {
 
   getTotal() :number{
   return JSON.parse(localStorage.getItem('cartTotal') !)
+  }
+
+  clearTotal (){
+    localStorage.removeItem('cartTotal')
   }
 
 }
