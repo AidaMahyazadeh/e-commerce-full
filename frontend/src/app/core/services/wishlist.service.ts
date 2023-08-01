@@ -17,6 +17,8 @@ lengthOfFavoraiteItems :number =0
     ) { }
 
 getProducts (){
+  this.favoraiteProducts =this.authStorage.getFavoraiteProducts()
+  this.wishListSubject$.next(this.favoraiteProducts)
   return this.wishListSubject$.asObservable()
 }
 
