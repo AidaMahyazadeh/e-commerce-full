@@ -12,10 +12,12 @@ import { CartComponent } from './shared/components/cart/cart.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProductsRoutingModule } from './modules/products/products-routing.module';
 import { AuthInterceptor } from './core/services/auth.interceptor';
-import { NavComponent } from './components/nav/nav.component';
+// import { NavComponent } from './core/nav/nav.component';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { WishlistComponent } from './shared/components/wishlist/wishlist.component';
 import { PaymentComponent } from './shared/components/payment/payment.component';
+import { CoreModule } from './core/core.module';
+import { NavComponent } from './components/nav/nav.component';
 
 
 @NgModule({
@@ -32,14 +34,15 @@ import { PaymentComponent } from './shared/components/payment/payment.component'
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
+    CoreModule,
+    AppRoutingModule,  
     ReactiveFormsModule,
     HttpClientModule,
     NgToastModule,
     ProductsRoutingModule,
     FormsModule,
     NgbModalModule,
-    NgxPayPalModule
+    NgxPayPalModule,
   ],
   providers: [
     {
