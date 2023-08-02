@@ -24,15 +24,6 @@ img{
     width: 120px;
 }
 
-.custom-class{
-  position: fixed;
-  margin: auto;
-  right: 0%;
-  overflow-y: initial;
-  transform: translate(0%,5%);
-  width: auto;
-}
-
  .fa-trash {
    color: red;
 }
