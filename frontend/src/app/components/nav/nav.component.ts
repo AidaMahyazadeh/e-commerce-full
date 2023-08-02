@@ -35,7 +35,8 @@ export class NavComponent implements OnInit{
         res => this.favoraiteItems = res.length
       )
     } 
-
+   
+  
 
     isLoggedin (){
       return this.authStorage.isLoggedin()
@@ -47,6 +48,6 @@ export class NavComponent implements OnInit{
     }
 
     open(){
-     const modalRef = this.modalService.open(CartComponent, {scrollable: true,animation :true})
+     const modalRef = this.modalService.open(CartComponent, {scrollable: true,animation :true,modalDialogClass :'float-end',size : 'lg' })
     }
 }
