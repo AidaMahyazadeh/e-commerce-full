@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import { BehaviorSubject } from 'rxjs';
 import { AuthStorageService } from 'src/app/core/services/auth-storage.service';
 import { CartService } from 'src/app/core/services/cart.service';
 import { WishlistService } from 'src/app/core/services/wishlist.service';
@@ -17,6 +18,7 @@ export class NavComponent implements OnInit{
   crownIcon = './assets/icons/crown.svg';
   cartItems !:number;
   favoraiteItems !:number;
+  favoraiteItemsSubject$ = new BehaviorSubject <number>(0)
   
    
   constructor (
@@ -24,20 +26,28 @@ export class NavComponent implements OnInit{
     private router :Router,
     private cart :CartService,
     private modalService :NgbModal,
-    private wishlistService :WishlistService
+    private wishlistService :WishlistService,
+    private changeDetector :ChangeDetectorRef
     ){}
 
     ngOnInit(){
       this.cart.getProducts().subscribe(
-        res=>this.cartItems = res.length
-      )
-      this.wishlistService.getProducts().subscribe(
-        res => this.favoraiteItems = res.length
+        res=>{
+          this.cartItems = res.length
+          this.getLengthOfFavoraiteItems()
+        }
       )
     } 
-   
-  
 
+   getLengthOfFavoraiteItems(){
+    this.wishlistService.getProducts().subscribe(
+      res =>{
+        this.favoraiteItems= res.length
+        this.favoraiteItemsSubject$.next(this.favoraiteItems)
+      }
+    )
+   }
+   
     isLoggedin (){
       return this.authStorage.isLoggedin()
     }
