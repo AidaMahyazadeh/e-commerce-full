@@ -1,49 +1,49 @@
 <ng-container *ngIf="whishListProducts.length==0" >
-    <div class="custom-class">
-        <div class="center">
-          <div>
-            <h4>You don' have any favorite products.</h4>
-            <a routerLink="/products"><h5>Go to shopping page</h5></a>
-          </div>
+  <div class="custom-class">
+      <div class="center">
+        <div>
+          <h4>You don' have any favorite products.</h4>
+          <a routerLink="/products"><h5>Go to shopping page</h5></a>
         </div>
-    </div>
-    <img class="screen-image" src="../../../../assets/images/blog-1.jpg" alt="">
+      </div>
+  </div>
+  <img class="screen-image" src="../../../../assets/images/blog-1.jpg" alt="">
 </ng-container>
 <ng-container *ngIf="whishListProducts.length!=0">
-  <div class="custom-class">
-    <div class="card">
-        <div class="product">
-            <table class="table">
-               <thead>
-                 <tr>
-                    <th>Product name</th>
-                    <th>Product Image</th>
-                    <th>Price</th>
-                 </tr>
-               </thead>
-               <tbody>
-                 <tr *ngFor="let product of whishListProducts ">
-                    <td>{{product.title}}</td>
-                    <td><img class="image" src="{{product.imageUrl}}" alt="{{product.title}}"></td>
-                    <td>{{product.price | currency :'EUR'}}</td>
-                     <td>
-                      <i (click)="removeProduct(product.id)"  class='fa fa-heart '></i>   
-                    </td>
-                    <td>
-                      <span class="fa fa-cart-plus" (click)="addToCart(product)"></span>
-                    </td>
-                 </tr>
-                 <tr>
-                  <td>
-                    <button class="btn" (click)="removeAllProducts()" >Delete All Items</button>
+<div class="custom-class">
+  <div class="card">
+      <div class="product">
+          <table class="table">
+             <thead>
+               <tr>
+                  <th>Product name</th>
+                  <th>Product Image</th>
+                  <th>Price</th>
+               </tr>
+             </thead>
+             <tbody>
+               <tr *ngFor="let product of whishListProducts ">
+                  <td>{{product.title}}</td>
+                  <td><img class="image" src="{{product.imageUrl}}" alt="{{product.title}}"></td>
+                  <td>{{product.price | currency :'EUR'}}</td>
+                   <td>
+                    <i (click)="removeProduct(product.id)"  class='fa fa-heart '></i>   
                   </td>
                   <td>
-                    <button class="btn" (click)="addItem()">Go back to shopping page</button>
+                    <span class="fa fa-cart-plus" (click)="addToCart(product)"></span>
                   </td>
-                 </tr>
-               </tbody>
-            </table>
-        </div>
-    </div> 
-  </div>
+               </tr>
+               <tr>
+                <td>
+                  <button class="btn" (click)="removeAllProducts()" >Delete All Items</button>
+                </td>
+                <td>
+                  <button class="btn" (click)="addItem()">Go back to shopping page</button>
+                </td>
+               </tr>
+             </tbody>
+          </table>
+      </div>
+  </div> 
+</div>
 </ng-container>
