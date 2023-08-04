@@ -82,23 +82,39 @@ export class AuthStorageService {
     }
   }
 
-  storeFavoraiteproducts(product :IProduct){
+  storeFavoraiteItems(products :IProduct[]){
+    localStorage.setItem('favoraiteItems',JSON.stringify(products))
+  }
+
+  storeFavoraiteProducts(product :IProduct){
     this.favoraiteItems.push(product)
-    localStorage.setItem('favoraiteItems',JSON.stringify([product]))
+    this.storeFavoraiteItems(this.favoraiteItems)
   }
 
- storeFavoraiteProduct(product :IProduct){
-  let favoraiteProducts = localStorage.getItem('favoraiteItems')
-  if(!favoraiteProducts){
-    localStorage.setItem('favoraiteItems',JSON.stringify([product]))
-  }else{
-   this.favoraiteItems =JSON.parse(favoraiteProducts)
+//  storeFavoraiteProduct(product :IProduct){
+//   let favoraiteProducts = localStorage.getItem('favoraiteItems')
+//   if(!favoraiteProducts){
+//     localStorage.setItem('favoraiteItems',JSON.stringify([product]))
+//   }else{
+//    this.favoraiteItems =JSON.parse(favoraiteProducts)
+//    this.favoraiteItems.push(product)
+//    localStorage.setItem('favoraiteItems',JSON.stringify(this.favoraiteItems))
+//   }
+//   }
+
+storeFavoraiteProduct(product :IProduct){
+  product.favoraite =true
    this.favoraiteItems.push(product)
-   localStorage.setItem('favoraiteItems',JSON.stringify(this.favoraiteItems))
-  }
+   let favoraiteProduct = this.getFavoraiteProducts()
+   if (!favoraiteProduct) {
+    this.storeFavoraiteProducts(product)
+   } else{
+    this.favoraiteItems = favoraiteProduct
+    this.favoraiteItems.push(product)
+    this.storeFavoraiteItems(this.favoraiteItems)
+   }
   }
 
- 
   favoariteProductExisted (product :IProduct) :boolean{
     return this.favoraiteItems.findIndex( item =>item.id ==product.id) > -1
   }
@@ -134,4 +150,9 @@ export class AuthStorageService {
     localStorage.removeItem('cartTotal')
   }
 
+  clearPaypalStorage(){
+    localStorage.removeItem('__paypal_storage__')
+  }
+
 }
+
