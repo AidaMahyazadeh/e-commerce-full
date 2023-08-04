@@ -16,8 +16,8 @@ export class CartService {
   constructor(private localStorage :AuthStorageService) { }
 
   getProducts () {
-    this.itemList= this.localStorage.getProduct()
-    this.productList$.next(this.itemList)
+    // this.itemList= this.localStorage.getProduct()
+    // this.productList$.next(this.itemList)
     return this.productList$.asObservable()
     }
 
