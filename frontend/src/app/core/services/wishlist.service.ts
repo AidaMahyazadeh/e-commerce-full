@@ -18,14 +18,16 @@ lengthOfFavoraiteItems :number =0
 
 getProducts (){
   this.favoraiteProducts =this.authStorage.getFavoraiteProducts()
-  this.wishListSubject$.next(this.favoraiteProducts)
-  return this.wishListSubject$.asObservable()
+   this.wishListSubject$.next(this.favoraiteProducts)
+   return this.wishListSubject$.asObservable()
 }
+ 
 
   addToWishList (product :IProduct){
+    product.favoraite =true
+     this.favoraiteProducts.push(product)
     if (!this.authStorage.favoariteProductExisted(product)){
       this.authStorage.storeFavoraiteProduct(product)
-       this.wishListSubject$.next(this.favoraiteProducts)
     }
  
   }
@@ -42,8 +44,8 @@ getProducts (){
  }
  
  clearWishList(){
+  this.wishListSubject$.next([])
   this.authStorage.clearAllFavoraiteItems()
  }
 
 }
-
