@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import { BehaviorSubject } from 'rxjs';
@@ -26,9 +26,10 @@ export class NavComponent implements OnInit{
     private router :Router,
     private cart :CartService,
     private modalService :NgbModal,
-    private wishlistService :WishlistService,
-    private changeDetector :ChangeDetectorRef
+    private wishlistService :WishlistService
+
     ){}
+ 
 
     ngOnInit(){
       this.cart.getProducts().subscribe(
@@ -58,6 +59,6 @@ export class NavComponent implements OnInit{
     }
 
     open(){
-     const modalRef = this.modalService.open(CartComponent, {scrollable: true,animation :true,modalDialogClass :'float-end',size : 'lg' })
+     const modalRef = this.modalService.open(CartComponent, {scrollable: true,animation :true,modalDialogClass : 'float-end' ,size :'lg'})
     }
 }
