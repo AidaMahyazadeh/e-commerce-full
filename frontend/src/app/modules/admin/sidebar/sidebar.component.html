@@ -1,0 +1,5 @@
+<div class="sidebar">
+    <div class="sidebar-items" *ngFor="let item of sidebarList" [routerLink]="item.link">
+      {{item.title}}
+    </div>
+</div>
