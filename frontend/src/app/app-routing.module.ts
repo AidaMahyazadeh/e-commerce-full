@@ -7,6 +7,7 @@ import { AdminAuthGuard } from './core/services/guards/admin-auth.guard';
 import { WishlistComponent } from './shared/components/wishlist/wishlist.component';
 import { AuthGuard } from './core/services/guards/auth.guard';
 import { PaymentComponent } from './shared/components/payment/payment.component';
+import { SuccessComponent } from './shared/components/success/success.component';
 
 
 const routes: Routes = [
@@ -16,6 +17,7 @@ const routes: Routes = [
   {path : 'signup', component : SignupComponent},
   {path :'wishlist', component :WishlistComponent,canActivate :[AuthGuard]},
   {path :'payment',component :PaymentComponent,canActivate :[AuthGuard]},
+  {path :'success' ,component :SuccessComponent},
   {path :'products',loadChildren : () =>import('./modules/products/products.module').then (m =>m.ProductsModule)},
   { path: 'admin',canActivate : [AdminAuthGuard], loadChildren: () => import('./modules/admin/admin.module').then(m => m.AdminModule) }   
 ];
