@@ -16,6 +16,7 @@ import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { WishlistComponent } from './shared/components/wishlist/wishlist.component';
 import { PaymentComponent } from './shared/components/payment/payment.component';
 import { NavComponent } from './components/nav/nav.component';
+import { SuccessComponent } from './shared/components/success/success.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { NavComponent } from './components/nav/nav.component';
     LoginComponent,
     CartComponent,
     WishlistComponent,
-    PaymentComponent
+    PaymentComponent,
+    SuccessComponent
   ],
   imports: [
     BrowserModule,
