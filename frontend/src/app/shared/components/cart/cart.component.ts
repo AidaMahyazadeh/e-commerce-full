@@ -86,6 +86,7 @@ export class CartComponent implements OnInit {
 
 checkout(){
   this.authStorage.storeTotal(this.total)
+  this.cart.removeAllCartItem()
   this.router.navigate(['/payment'])
   this.close()
 }
