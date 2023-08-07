@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import {
   IPayPalConfig,
   ICreateOrderRequest 
 } from 'ngx-paypal';
 import { AuthStorageService } from 'src/app/core/services/auth-storage.service';
+import { environment } from 'src/environments/environment';
+
 
 @Component({
   selector: 'app-payment',
@@ -18,7 +21,8 @@ showCancel !:boolean;
 cartTotal :number =0;
 
   constructor(
-    private authStorage :AuthStorageService
+    private authStorage :AuthStorageService,
+    private router : Router
   ){}
 
   ngOnInit() {
@@ -29,7 +33,7 @@ cartTotal :number =0;
   private initConfig(): void {
     this.payPalConfig = {
         currency: 'EUR',
-        clientId: 'sb',
+        clientId: `${environment.client_ID}`,
         createOrderOnClient: (data) => < ICreateOrderRequest > {
             intent: 'CAPTURE',
             purchase_units: [{
@@ -70,6 +74,10 @@ cartTotal :number =0;
         },
         onClientAuthorization: (data) => {
             console.log('onClientAuthorization - you should probably inform your server about completed transaction at this point', data);
+            if(data.status ==='COMPLETED'){
+               this.cartTotal = 0 
+               this.router.navigate(['success'])
+            }
             this.showSuccess = true;
         },
         onCancel: (data, actions) => {
@@ -83,9 +91,8 @@ cartTotal :number =0;
         },
         onClick: (data, actions) => {
             console.log('onClick', data, actions);
-            // this.resetStatus();
-        }
-    };
+        
+    }
 }
 }
-
+}
