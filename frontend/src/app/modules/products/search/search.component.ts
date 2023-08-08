@@ -9,7 +9,6 @@ import { ProductsService } from 'src/app/core/services/products.service';
 })
 export class SearchComponent {  
   categories$ = this.productService.getAllCategories()
-  categoriesunique : string[]=[]
   @Output() showCategory =new EventEmitter <string>()
   category :string='';
  
