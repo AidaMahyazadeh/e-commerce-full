@@ -1,0 +1,7 @@
+<div class="sidebar">
+    <div class="sidebar-items" *ngFor="let item of sidebarList; let i =index" [routerLink]="item.link" [ngClass]="{
+      'sidebar-items-active' :item.active, 'sidebar-items' :!item.active
+    }" (click)="onchangeLink (i)">
+      {{item.title}}
+    </div>
+</div>
