@@ -41,7 +41,8 @@ export class NavComponent implements OnInit{
     } 
 
    getLengthOfFavoraiteItems(){
-    this.wishlistService.getProducts().subscribe(
+     this.wishlistService.getProducts().subscribe(
+      // this.wishlistService.getWishListProduct().subscribe(
       res =>{
         this.favoraiteItems= res.length
         this.favoraiteItemsSubject$.next(this.favoraiteItems)
