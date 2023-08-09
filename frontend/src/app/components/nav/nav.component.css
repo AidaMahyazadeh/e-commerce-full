@@ -4,10 +4,12 @@ header{
    background: linear-gradient(to right,#293A54 10%,#C15AFF 40%);
    padding: 0;
    border-bottom: 1px solid none;
+   height: 60px;
 }
 
 img{
     fill: beige;
+    margin-top: 5px;
     margin-left: 60px;
 }
 
