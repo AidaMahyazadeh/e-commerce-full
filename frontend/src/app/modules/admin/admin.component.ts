@@ -1,26 +1,22 @@
-import { Component, OnInit } from '@angular/core';
-import { AuthenticationService } from 'src/app/core/services/authentication.service';
+import { Component} from '@angular/core';
+import { Router } from '@angular/router';
 
-import IUser from 'src/app/shared/models/user.model';
 
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.css']
 })
-export class AdminComponent implements OnInit{
-  users !: IUser [];
-  
- constructor (private auth :AuthenticationService){}
+export class AdminComponent  {
+  showContent = false
+  constructor(private router :Router){}
 
- ngOnInit(): void {
-  
-  this.auth.getAllUsers ().subscribe (
-    res  =>{
-      for ( let [key ,value] of Object.entries(res)){
-        key === 'data' ? this.users =value : this.users = []
-       }  
-      }
-     )  
-    } 
+
+ getRoute(){
+  if (this.router.url.endsWith('/admin')) {
+    return this.showContent = false
+  }
+  return this.showContent = true
  }
+  
+}
