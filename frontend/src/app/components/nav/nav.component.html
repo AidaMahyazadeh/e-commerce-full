@@ -8,13 +8,15 @@
                 <a *ngIf="isLoggedin()" routerLink="/logout" (click)="logout ()">Logout</a>
             </li>
             <li>
-                <a routerLink="/admin">
+                <a routerLink="/admin"
+                *ngIf="isLoggedin()">
             <i class="fa fa-lock"></i>
             </a>
             </li>
             <li>
-                <span class='fa fa-heart' routerLink="/wishlist"></span>
-                <span *ngIf="favoraiteItems> 0 && isLoggedin()" class="badge bg-danger">{{favoraiteItemsSubject$ |async}}</span>
+                <span
+                *ngIf="isLoggedin()" class='fa fa-heart' routerLink="/wishlist"></span>
+                <span *ngIf="favoraiteItems> 0 " class="badge bg-danger">{{favoraiteItemsSubject$ |async}}</span>
             </li>
             <li>
                 <a *ngIf="isLoggedin()" class="cart" data-toggle="modal" (click)="open()">cart
