@@ -30,13 +30,16 @@ export class ProductsService {
 
    addCategory(category :string){
      this.getAllCategories().subscribe(
-      res=> {
+       res=> {
         this.categories = res
         this.categories.push(category)
         this.categoriesSubject$.next(this.categories) 
-        return this.categoriesSubject$
       }
+      
      )
+    
+     return this.categoriesSubject$
+
    }
 
    getProductsByCategory(category :string):Observable <IProduct[]>{
