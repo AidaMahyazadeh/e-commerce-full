@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, OnDestroy, OnInit } from '@angular/core'
 import IProduct from '../../models/product.model';
 import { CartService } from 'src/app/core/services/cart.service';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
 import { WishlistService } from 'src/app/core/services/wishlist.service';
 import { AuthStorageService } from 'src/app/core/services/auth-storage.service';
+import { Subscription } from 'rxjs';
 
 
 
@@ -14,11 +15,12 @@ import { AuthStorageService } from 'src/app/core/services/auth-storage.service';
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.css']
 })
-export class CartComponent implements OnInit {
+export class CartComponent implements OnInit, OnDestroy {
 
   products !:IProduct[];
   totalPrice :number=0;
   total =0;
+  subscription !:Subscription;
   
 
  constructor (
@@ -34,7 +36,7 @@ export class CartComponent implements OnInit {
  }
  
  getTotal(){
-  this.cart.getProducts().subscribe(res =>{
+ this.subscription= this.cart.getProducts().subscribe(res =>{
     this.products=res;
     this.total =  this.products.reduce((acc,product)=>{
      return acc + (product.price*product.quantity)
@@ -89,6 +91,10 @@ checkout(){
   this.cart.removeAllCartItem()
   this.router.navigate(['/payment'])
   this.close()
+}
+
+ngOnDestroy(): void {
+  this.subscription.unsubscribe();
 }
 
 }
