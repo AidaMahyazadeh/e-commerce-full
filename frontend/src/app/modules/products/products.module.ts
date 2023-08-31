@@ -21,6 +21,6 @@ import { CategoryComponent } from './category/category.component';
     ProductsRoutingModule,
     NgbPagination
   ],
-  exports : [RouterModule]
+  exports : [RouterModule,SearchComponent]
 })
 export class ProductsModule { }
