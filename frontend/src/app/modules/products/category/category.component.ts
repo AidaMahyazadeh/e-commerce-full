@@ -1,7 +1,6 @@
 import { Component,OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { AuthStorageService } from 'src/app/core/services/auth-storage.service';
 import { CartService } from 'src/app/core/services/cart.service';
 import { ProductsService } from 'src/app/core/services/products.service';
 import IProduct from 'src/app/shared/models/product.model';
@@ -21,8 +20,7 @@ export class CategoryComponent implements OnInit{
   private productService :ProductsService,
   private activatedRout :ActivatedRoute,
   private cart :CartService,
-  private router:Router,
-  private localeStorage :AuthStorageService
+  private router:Router
   ) {}
   
   ngOnInit(): void {
