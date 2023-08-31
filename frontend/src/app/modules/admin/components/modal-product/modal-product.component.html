@@ -1,0 +1,30 @@
+<div>
+    <form [formGroup]="productForm">
+        <div class="row">
+         <div class="col-md-4 col-sm-12">
+           <label for="">Title</label>
+            <input type="text" class="form-control" placeholder="title" formControlName="title">
+         </div>
+         <div class="col-md-4 col-sm-12">
+            <label for="">Price</label>
+             <input type="text" class="form-control" placeholder="price" formControlName="price">
+          </div>
+          <div class="col-md-4 col-sm-12">
+            <label for="">Price</label>
+             <input type="text" class="form-control" placeholder="quantity" formControlName="quantity">
+          </div>
+          <div class="col-md-4 col-sm-12">
+            <label for="">Category</label>
+            <app-search (showCategory)="onShowCategory($event)"></app-search>
+          </div>
+          <div class="col-md-4 col-sm-12">
+            <label for="">Image</label>
+            <img src="" alt="">
+             <input type="file" class="form-control" placeholder="add image" formControlName="imageUrl">
+          </div>
+        </div>
+        <div class="d-flex justify-content-end mt-3">
+            <button class="btn btn-success" (click)="onSaveProduct()">Save</button>
+        </div>
+    </form>
+</div>
