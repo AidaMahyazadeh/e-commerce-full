@@ -16,12 +16,16 @@ lengthOfFavoraiteItems :number =0
     private authStorage : AuthStorageService
     ) { }
 
-getProducts (){
-  this.favoraiteProducts =this.authStorage.getFavoraiteProducts()
-   this.wishListSubject$.next(this.favoraiteProducts)
-   return this.wishListSubject$.asObservable()
+getProducts () {
+  // this.favoraiteProducts =this.authStorage.getFavoraiteProducts()
+  //  this.wishListSubject$.next(this.favoraiteProducts)
+    return this.wishListSubject$.asObservable()
 }
- 
+ getWishListProduct(){
+   this.favoraiteProducts =this.authStorage.getFavoraiteProducts()
+   this.wishListSubject$.next(this.favoraiteProducts)
+   return this.wishListSubject$
+ }
 
   addToWishList (product :IProduct){
     product.favoraite =true
@@ -29,7 +33,7 @@ getProducts (){
     if (!this.authStorage.favoariteProductExisted(product)){
       this.authStorage.storeFavoraiteProduct(product)
     }
- 
+    this.wishListSubject$.next(this.favoraiteProducts)
   }
 
  removeFromWishList(productId:number){
