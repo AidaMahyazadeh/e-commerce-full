@@ -1,5 +1,5 @@
 img{
-    width: 100px;
+    max-width: 100%;
     height: auto;
     margin-bottom: 15px;
     align-items: center;
