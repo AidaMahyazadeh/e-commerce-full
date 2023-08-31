@@ -16,7 +16,7 @@
             <li>
                 <span
                 *ngIf="isLoggedin()" class='fa fa-heart' routerLink="/wishlist"></span>
-                <span *ngIf="favoraiteItems> 0 " class="badge bg-danger">{{favoraiteItemsSubject$ |async}}</span>
+                <span *ngIf="favoraiteItemsLength> 0 " class="badge bg-danger">{{favoraiteItemsLength}}</span>
             </li>
             <li>
                 <a *ngIf="isLoggedin()" class="cart" data-toggle="modal" (click)="open()">cart
