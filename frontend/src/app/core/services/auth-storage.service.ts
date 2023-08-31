@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import IProduct from 'src/app/shared/models/product.model';
+import { ProductsService } from './products.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,8 +10,11 @@ export class AuthStorageService {
   products :IProduct[] =[];
   cartData :IProduct[] =[];
   favoraiteItems :IProduct[]=[];
+  categories !:string[];
 
-  constructor() { }
+  constructor(
+    private productsService : ProductsService
+  ) { }
 
   isLoggedin ()  {
     return (!!localStorage.getItem ('token'))
@@ -91,17 +95,6 @@ export class AuthStorageService {
     this.storeFavoraiteItems(this.favoraiteItems)
   }
 
-//  storeFavoraiteProduct(product :IProduct){
-//   let favoraiteProducts = localStorage.getItem('favoraiteItems')
-//   if(!favoraiteProducts){
-//     localStorage.setItem('favoraiteItems',JSON.stringify([product]))
-//   }else{
-//    this.favoraiteItems =JSON.parse(favoraiteProducts)
-//    this.favoraiteItems.push(product)
-//    localStorage.setItem('favoraiteItems',JSON.stringify(this.favoraiteItems))
-//   }
-//   }
-
 storeFavoraiteProduct(product :IProduct){
   product.favoraite =true
    this.favoraiteItems.push(product)
@@ -153,6 +146,7 @@ storeFavoraiteProduct(product :IProduct){
   clearPaypalStorage(){
     localStorage.removeItem('__paypal_storage__')
   }
+
 
 }
 
