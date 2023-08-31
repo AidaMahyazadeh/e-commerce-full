@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, map } from 'rxjs';
+import { BehaviorSubject, Observable, map } from 'rxjs';
 import IProduct from 'src/app/shared/models/product.model';
 
 @Injectable({
@@ -11,7 +11,12 @@ export class ProductsService {
   productsUrl ='../../assets/data/products.json'
   image = '../../assets/images/blog-1.jpg'
   allProducts !:IProduct[];
-  constructor(private http :HttpClient) { }
+  categories :string[]=[];
+  categoriesSubject$ = new BehaviorSubject <string[]>([]);
+
+  constructor(
+    private http :HttpClient,
+    ) { }
   
   getAllProducts () :Observable <IProduct[]>{
     return this.http.get <IProduct[]>(this.productsUrl)
@@ -21,6 +26,17 @@ export class ProductsService {
     return this.getAllProducts().pipe(
       map(products => [...new Set (products.map(product=>product.category))])   
     )
+   }
+
+   addCategory(category :string){
+     this.getAllCategories().subscribe(
+      res=> {
+        this.categories = res
+        this.categories.push(category)
+        this.categoriesSubject$.next(this.categories) 
+        return this.categoriesSubject$
+      }
+     )
    }
 
    getProductsByCategory(category :string):Observable <IProduct[]>{
