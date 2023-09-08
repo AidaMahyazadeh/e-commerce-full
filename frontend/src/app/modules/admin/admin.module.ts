@@ -29,12 +29,12 @@ import { ProductsModule } from '../products/products.module';
     ProductsModule,
     ReactiveFormsModule
   ],
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => AdminProductsComponent),
-      multi: true
-    }
-  ]
+  // providers: [
+  //   {
+  //     provide: NG_VALUE_ACCESSOR,
+  //     useExisting: forwardRef(() => AdminProductsComponent),
+  //     multi: true
+  //   }
+  // ]
 })
 export class AdminModule { }

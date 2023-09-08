@@ -58,6 +58,11 @@ getAllProducts(){
   this.products =this.products.filter (item => item.id !=id)
  }
 
+
+ onDiscountProduct(index:number){
+
+ }
+
  ngOnDestroy(): void {
    this.subscription.unsubscribe()
  }

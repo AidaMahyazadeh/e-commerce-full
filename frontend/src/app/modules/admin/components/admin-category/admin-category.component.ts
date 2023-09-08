@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthStorageService } from 'src/app/core/services/auth-storage.service';
 import { ProductsService } from 'src/app/core/services/products.service';
 
 @Component({
@@ -12,7 +11,6 @@ export class AdminCategoryComponent implements OnInit{
  newCategory !:string;
  constructor(
   private productService :ProductsService,
-  private authStorageService :AuthStorageService
   ){}
   
  ngOnInit(){

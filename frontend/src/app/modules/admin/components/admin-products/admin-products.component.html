@@ -19,13 +19,15 @@
           </thead>
           <tbody >
               <tr *ngFor="let product of  products ; index as i">
-                <!-- <td><input type="text" [(ngModel)] = 'product.id'></td> -->
-                <td><input type="text" [(ngModel)] ='product.title' name="title"ngDefaultControl ></td>
+                <!-- <td><input type="text" [(ngModel)]='product.id' [value]="product.id"></td> -->
+                <td><input type="text" [(ngModel)]='product.title' name="title"></td>
                 <td><img [src]="product.imageUrl" alt="{{product.title.slice(0,3)}}" width="50"
-                  height="50" [(ngModel)]="product.imageUrl" name="imageUrl" ngDefaultControl></td>
-                <td><input type="text" [(ngModel)] = 'product.category' name="category" ></td>
-                <td><input type="text" [(ngModel)] = 'product.price' name="price" ></td>
-                <td><input type="text" [(ngModel)] = 'product.quantity' name="quantity" ></td>
+                  height="50" name="imageUrl"></td>
+                  
+                <td><input type="text" [(ngModel)]='product.category' name="category" ></td>
+                <td><input type="text" [(ngModel)]='product.price' name="price" ></td>
+                <td><input type="text" [(ngModel)]='product.quantity' name="quantity" ></td>
+                <!-- <button (click)="onDiscountProduct(i)">Discount</button> -->
                 
                 <button (click)="deleteProduct(product.id)">Delete</button>
               </tr> 

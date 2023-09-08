@@ -33,8 +33,8 @@ cartTotal :number =0;
   private initConfig(): void {
     this.payPalConfig = {
         currency: 'EUR',
-        // clientId: `${environment.client_ID}`,
-        clientId :'AdHCedh2wU5YvAsaBMUQFXSrqh3DhPq5Ab4CeOh9GYeUrzuVSjpTtWMZh-cBSK__Nffo1_aQZxhAB5Yx',
+         clientId: `${environment.client_ID}`,
+       // clientId :'AdHCedh2wU5YvAsaBMUQFXSrqh3DhPq5Ab4CeOh9GYeUrzuVSjpTtWMZh-cBSK__Nffo1_aQZxhAB5Yx',
         createOrderOnClient: (data) => < ICreateOrderRequest > {
             intent: 'CAPTURE',
             purchase_units: [{
